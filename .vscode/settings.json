@@ -6,5 +6,13 @@
     "source.fixAll.eslint": true
   },
   "conventionalCommits.scopes": ["frontend", "backend"],
-  "editor.inlineSuggest.showToolbar": "onHover"
+  "editor.inlineSuggest.showToolbar": "onHover",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass"]
 }
