@@ -4,11 +4,13 @@
   "description": "El proyecto \"Gestión Integral de Propiedades\" es una aplicación web innovadora diseñada para propietarios e inquilinos, con el objetivo de simplificar y mejorar la gestión de propiedades de alquiler.",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "backend",
+    "frontend"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "cd frontend && npm run dev"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.54.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-refresh": "^0.4.4",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.1.0",
