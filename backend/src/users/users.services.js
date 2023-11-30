@@ -96,7 +96,7 @@ const getMyUser = (req, res) => {
 const patchMyUser = (req, res) => {
     const id = req.user.id;
     const {firstName, lastName, phone, birthday, gender, country} = req.body;
-    usersControllers.updateUser({firstName, lastName, phone, birthday, gender, country})
+    usersControllers.updateUser(id, {firstName, lastName, phone, birthday, gender, country})
         .then(response => {
             res.status(200).json({response,message: 'User information updated!'})
         })
