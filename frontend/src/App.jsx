@@ -1,9 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
-import Services from './pages/Services';
-import Contact from './pages/Contact';
-import NavBar from './components/NavBar';
-import NotFound from './pages/NotFound';
+import { Contact, Login, NotFound, Services } from './pages';
+
 
 function App() {
   return (
