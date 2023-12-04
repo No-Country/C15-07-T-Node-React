@@ -1,9 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { Login, Services, Contact, NotFound }  from '../pages';
 import NavBar from './NavBar/NavBar';
-import Login from '../pages/Login';
-import Services from '../pages/Services';
-import Contact from '../pages/Contact';
-import NotFound from '../pages/NotFound';
 
 // eslint-disable-next-line react/prop-types
 function AppContent() {
