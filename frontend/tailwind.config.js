@@ -10,12 +10,21 @@ export default {
       {
         condominios: {
           primary: '#3da9fc',
-          secondary: '#90b4ce',
-          accent: '#094067', // headline, stroke
-          neutral: '#d8eefe', // light blue background
-          tertiary: '#ef4565',
+          'primary-content': '#fffffe',
+          secondary: '#094067',
+          accent: '#ef4565',
+          neutral: '#d8eefe',
+          tertiary: '#90b4ce',
           'base-100': '#fffffe',
           'base-200': '#5f6c7b',
+          info: '#d8eefe',
+          'info-content': '#094067',
+          success: '#e7fef3',
+          'success-content': '#094067',
+          warning: '#ce6d00',
+          'warning-content': '#fffffe',
+          error: '#feeeef',
+          'error-content': '#ef4565',
         },
       },
       'dark',
@@ -26,7 +35,7 @@ export default {
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
     prefix: '', // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
-    logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
+    logs: false, // Shows info about daisyUI version and used config in the console when building your CSS
     themeRoot: ':root', // The element that receives theme color CSS variables
   },
 };
