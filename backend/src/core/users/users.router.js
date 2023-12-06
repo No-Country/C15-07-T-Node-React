@@ -1,9 +1,9 @@
 const usersServices = require('./users.services');
 const router = require('express').Router();
 const passport = require('passport');
-const adminValidate = require('../middlewares/rol.middleware');
+const adminValidate = require('../../middlewares/rol.middleware');
 
-require('../middlewares/auth.middleware')(passport)
+require('../../middlewares/auth.middleware')(passport)
 
 //? Main Route
 

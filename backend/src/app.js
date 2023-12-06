@@ -4,8 +4,8 @@ const app = express();
 const {port} = require('./config');
 const db = require('./utils/database');
 
-const userRouter = require('./users/users.router');
-const authRouter = require('./auth/auth.router');
+const userRouter = require('./core/users/users.router');
+const authRouter = require('./core/auth/auth.router');
 
 
 app.use(express.json());
