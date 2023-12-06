@@ -1,13 +1,16 @@
 import { create } from 'zustand';
+import httpService from '../api/httpService';
 
 export const useUserStore = create((set) => ({
   user: null,
   authToken: null,
+  loading: false,
+  error: null,
 
   setUser: (value) =>
     set((state) => ({
       ...state,
-      user: value
+      user: value,
     })),
 
   setAuthToken: async () => {
@@ -20,11 +23,33 @@ export const useUserStore = create((set) => ({
       set(() => ({ authToken: value }));
       return { authToken: value };
     } catch (error) {
-      console.error('Error al obtener el token del almacenamiento local:', error);
+      console.error(
+        'Error al obtener el token del almacenamiento local:',
+        error,
+      );
       return { authToken: null };
     }
   },
 
+  login: async ({ email, password }) => {
+    try {
+      set(() => ({ loading: true, error: null }));
+
+      const response = await httpService.post('/api/v1/auth/login', {
+        email,
+        password,
+      });
+      const { data } = response;
+
+      localStorage.setItem('token', data.token);
+      set(() => ({ authToken: data.token, loading: false }));
+
+      return { status: response.status, data };
+    } catch (error) {
+      console.error('Error al intentar iniciar sesión:', error.data.message);
+      set(() => ({ error: error.data.message, loading: false }));
+    }
+  },
 
   logout: async () => {
     try {
@@ -35,5 +60,4 @@ export const useUserStore = create((set) => ({
       // a definir manejo de error
     }
   },
-
 }));

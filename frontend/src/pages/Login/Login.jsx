@@ -1,14 +1,30 @@
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useUserStore } from '../../store/userStore';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Login() {
+  const login = useUserStore((state) => state.login);
+  const loading = useUserStore((state) => state.loading);
+  const error = useUserStore((state) => state.error);
+  const authToken = useUserStore((state) => state.token);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const res = await login(data);
+    if (res.status === 200) navigate('/dashboard');
+  };
+
+  useEffect(() => {
+    if (authToken) navigate('/dashboard');
+  }, [authToken]);
 
   return (
     <section className='flex h-screen w-full items-start'>
@@ -35,6 +51,11 @@ function Login() {
           </div>
 
           <div className='flex w-full flex-col'>
+            {error ? (
+              <span className='alert alert-error mb-3 rounded-lg p-3 text-xs'>
+                Credenciales inválidas. Revisa tu correo o contraseña
+              </span>
+            ) : null}
             <input
               type='email'
               placeholder='Correo'
@@ -84,10 +105,18 @@ function Login() {
           </div>
 
           <div className='my-4 flex w-full flex-col'>
-            <button className='btn btn-primary my-2 flex w-full p-4'>
-              Iniciar sesión
+            <button
+              className='btn btn-primary my-2 flex w-full p-4'
+              disabled={loading}>
+              {loading ? (
+                <span className='loading loading-spinner loading-sm'></span>
+              ) : (
+                'Iniciar sesión'
+              )}
             </button>
-            <button className='btn btn-secondary my-2 flex w-full p-4'>
+            <button
+              className='btn btn-secondary my-2 flex w-full p-4'
+              disabled={loading}>
               Registro
             </button>
           </div>
