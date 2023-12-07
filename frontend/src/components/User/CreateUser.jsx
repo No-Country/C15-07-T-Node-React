@@ -14,11 +14,19 @@ export default function CreateUser() {
           <h3 className='justify-center text-4xl font-bold'>Nuevo Usuario</h3>
           <p className='py-4'>Ingrese la informacion solicitada </p>
 
-          <form className='mt-4 space-y-4'>
+          <form className='mt-4 space-y-4' method='dialog'>
+            <div
+              className='btn btn-circle btn-ghost btn-sm absolute right-2 top-2'
+              onClick={() => document.getElementById('my_modal_4').close()}>
+              ✕
+            </div>
             <div className='flex space-x-4'>
               <div className='flex flex-col'>
                 <label className='font-medium'>Nombre</label>
-                <input type='text' className='input input-bordered' />
+                <input
+                  type='text'
+                  className='input input-bordered input-primary'
+                />
               </div>
               <div className='flex flex-col'>
                 <label className='font-medium'>Apellido</label>
@@ -28,22 +36,33 @@ export default function CreateUser() {
 
             <div className='flex flex-col'>
               <label className='font-medium'>Email</label>
-              <input type='email' className='input input-bordered' />
+              <input
+                type='email'
+                className='input input-bordered input-primary'
+              />
             </div>
 
             <div className='flex flex-col'>
               <label className='font-medium'>Número de teléfono</label>
-              <input type='number' className='input input-bordered' />
+              <input
+                type='number'
+                className='input input-bordered input-primary'
+              />
             </div>
 
             <div className='flex flex-col'>
               <label className='font-medium'>Fecha de Nacimiento</label>
-              <input type='date' className='input input-bordered' />
+              <input
+                type='date'
+                className='input input-bordered input-primary'
+              />
             </div>
 
             <div className='flex flex-col'>
               <label className='font-medium'>Tipo de Usuario</label>
-              <select type='text' className='input input-bordered'>
+              <select
+                type='text'
+                className='input input-bordered input-primary'>
                 <option value=''></option>
                 <option value='usuario'>Usuario</option>
                 <option value='portero'>Portero</option>
