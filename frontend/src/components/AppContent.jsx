@@ -9,7 +9,6 @@ import {
   Amenities,
   Maintenance,
 } from '../pages';
-import HeaderTop from './Header/Header-top';
 
 import PrivateRoute from './PrivateRoute';
 import {
@@ -23,6 +22,7 @@ import {
   SERVICES,
   TENANTS,
 } from '../router/paths';
+import Dashboard from '../pages/AdminDashboard/Dashboard';
 
 function AppContent() {
   return (
@@ -32,7 +32,7 @@ function AppContent() {
       <Route path={CONTACT} element={<Contact />} />
       <Route element={<PrivateRoute />}>
         <Route path={DASHBOARD} element={<AdminDashboard />}>
-          <Route index element={<HeaderTop />} />
+          <Route index element={<Dashboard />} />
           <Route path={SERVICES} element={<Services />} />
           <Route path={TENANTS} element={<Tenants />} />
           <Route path={AMENITIES} element={<Amenities />} />
