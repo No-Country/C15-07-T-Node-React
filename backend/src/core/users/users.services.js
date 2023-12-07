@@ -1,4 +1,5 @@
 const usersControllers = require('./users.controllers')
+const amenenititesControllers = require('../amenities/amenities.controller')
 
 const getAllUsers = (req, res) => {
     usersControllers.getAllUsers()
@@ -30,8 +31,7 @@ const registerUser = (req, res) => {
             })
             .catch(err => {
                 res.status(400).json({
-                   error: err.message,
-                   name: firstName
+                   error: err.message
                 })
             })
     } else {
@@ -116,6 +116,17 @@ const deleteMyUser = (req, res) => {
         })
 }
 
+const getMyReservations = (req, res) => {
+    const id = req.user.id;
+    amenenititesControllers.getAmenitiesReservationsByUser(id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({message: err.message})
+        })
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
@@ -124,5 +135,6 @@ module.exports = {
     deleteUser,
     getMyUser,
     patchMyUser,
-    deleteMyUser
+    deleteMyUser,
+    getMyReservations
 }
