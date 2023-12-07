@@ -1,6 +1,6 @@
 import HeaderBottom from '../../components/Header/Header-bottom';
 
-function Mantenimientos() {
+function Maintenance() {
   return (
     <>
       <HeaderBottom />
@@ -8,4 +8,4 @@ function Mantenimientos() {
   );
 }
 
-export default Mantenimientos;
+export default Maintenance;

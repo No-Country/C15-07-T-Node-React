@@ -1,6 +1,6 @@
 import HeaderBottom from '../../components/Header/Header-bottom';
 
-function Amenidades() {
+function Amenities() {
   return (
     <>
       <HeaderBottom />
@@ -8,4 +8,4 @@ function Amenidades() {
   );
 }
 
-export default Amenidades;
+export default Amenities;

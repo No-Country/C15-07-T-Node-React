@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
+import logo from '../../../public/condominium.svg';
 
 function NavBar() {
   return (
-    <header className='navbar bg-base-100 pl-4 pr-8 shadow-2xl'>
+    <header className='navbar z-10 bg-base-100 pl-4 pr-8 shadow'>
       <div className='flex-1'>
         <Link className='btn btn-ghost text-xl hover:bg-neutral hover:text-secondary'>
-          <img src='condominium.svg' alt='Condominium' className='h-8' />
-          <span className='hidden sm:inline-block'>Condominium</span>
+          <img src='/condominiums.svg' alt='' className='h-8' />
+          <span className='hidden sm:inline-block'>Condominiums</span>
         </Link>
       </div>
       <div className='flex-none gap-3'>
@@ -25,9 +26,9 @@ function NavBar() {
                 <path
                   d='M3.125 8.33331L11.3444 13.8129C12.0442 14.2794 12.9558 14.2794 13.6556 13.8129L21.875 8.33331M5.20833 19.7916H19.7917C20.9423 19.7916 21.875 18.8589 21.875 17.7083V7.29165C21.875 6.14105 20.9423 5.20831 19.7917 5.20831H5.20833C4.05774 5.20831 3.125 6.14105 3.125 7.29165V17.7083C3.125 18.8589 4.05774 19.7916 5.20833 19.7916Z'
                   stroke='#3F3F46'
-                  stroke-width='1.8'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
+                  strokeWidth='1.8'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
               </svg>
 
@@ -83,15 +84,15 @@ function NavBar() {
             className='menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow'>
             <li>
               <Link className='justify-between'>
-                Profile
-                <span className='badge'>New</span>
+                Perfil
+                <span className='badge badge-primary'>Nuevo</span>
               </Link>
             </li>
             <li>
-              <Link>Settings</Link>
+              <Link>Configuración</Link>
             </li>
             <li>
-              <Link>Logout</Link>
+              <Link>Cerrar sesión</Link>
             </li>
           </ul>
         </div>
