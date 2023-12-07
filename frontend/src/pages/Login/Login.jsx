@@ -9,6 +9,7 @@ function Login() {
   const loading = useUserStore((state) => state.loading);
   const error = useUserStore((state) => state.error);
   const authToken = useUserStore((state) => state.token);
+  const getMyInfo = useUserStore((state) => state.getMyInfo);
 
   const {
     register,
@@ -19,19 +20,22 @@ function Login() {
 
   const onSubmit = async (data) => {
     const res = await login(data);
-    if (res.status === 200) navigate('/dashboard');
+
+    const info = await getMyInfo();
+
+    if (info.status === 200 || res.status === 200) navigate('/dashboard');
   };
 
   useEffect(() => {
-    if (authToken) navigate('/dashboard');
+    if (localStorage.getItem('token')) navigate('/dashboard');
   }, [authToken]);
 
   return (
     <section className='flex h-screen w-full items-start'>
-      <article className='hidden h-full w-1/2 bg-neutral lg:flex'>
+      <article className='relative hidden h-full w-1/2 bg-neutral lg:flex'>
         <img
           src='https://www.publicdomainpictures.net/pictures/370000/velka/tall-building-windows.jpg'
-          className='h-full w-full object-cover'
+          className='fixed h-full w-1/2 object-cover'
         />
       </article>
       <form
@@ -39,7 +43,7 @@ function Login() {
         onSubmit={handleSubmit(onSubmit)}>
         <h1 className='mx-auto mb-2 flex items-center gap-2 text-xl font-semibold'>
           <img src='condominium.svg' alt='Condominium' className='h-8' />
-          Condominium
+          Condominiums
         </h1>
 
         <div className='mx-auto flex w-full max-w-[550px] flex-col'>
@@ -122,7 +126,7 @@ function Login() {
           </div>
         </div>
 
-        <div className='flex w-full items-center justify-center'>
+        <div className='flex w-full items-center justify-center pb-20'>
           <p className='text-sm font-normal'>
             ¿No tienes cuenta?{' '}
             <Link

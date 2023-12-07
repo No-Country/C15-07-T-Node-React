@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../public/condominium.svg';
+import { useUserStore } from '../../store/userStore';
 
 function NavBar() {
+  const user = useUserStore((state) => state.user);
   return (
     <header className='navbar z-10 bg-base-100 pl-4 pr-8 shadow'>
       <div className='flex-1'>
@@ -75,7 +77,10 @@ function NavBar() {
             <div className='w-10 rounded-full'>
               <img
                 alt='Tailwind CSS Navbar component'
-                src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
+                src={
+                  user?.urlImage ||
+                  'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
+                }
               />
             </div>
           </div>
