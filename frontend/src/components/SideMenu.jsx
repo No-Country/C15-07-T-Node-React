@@ -16,14 +16,16 @@ export const SideMenu = () => {
       isActive ? 'bg-neutral/80' : ''
     }`;
 
-  return (
+  return (  
     <div className='flex min-h-full grow flex-col gap-7 p-4'>
+    <CreateUser />
       <button className='btn btn-primary flex w-full items-center'>
         <div className='w-5'>
           <img src={More} alt='More' />
         </div>
         Crear Nueva Cuenta
       </button>
+
 
       <NavLink to={DASHBOARD} className={activeStyle}>
         <div className='w-5'>

@@ -10,6 +10,7 @@ import {
   Maintenance,
 } from '../pages';
 import HeaderTop from './Header/Header-top';
+
 import PrivateRoute from './PrivateRoute';
 import {
   AMENITIES,
