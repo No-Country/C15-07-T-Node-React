@@ -1,42 +1,46 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import {
   Login,
   Services,
   Contact,
   NotFound,
-  Inquilinos,
-  Amenidades,
-  Mantenimientos,
+  AdminDashboard,
+  Tenants,
+  Amenities,
+  Maintenance,
 } from '../pages';
-import NavBar from './NavBar/NavBar';
 import HeaderTop from './Header/Header-top';
-import { SideMenu } from './SideMenu';
 
-// eslint-disable-next-line react/prop-types
+import PrivateRoute from './PrivateRoute';
+import {
+  AMENITIES,
+  CONTACT,
+  DASHBOARD,
+  HOME,
+  LOGIN,
+  MAINTENANCE,
+  NOT_FOUND,
+  SERVICES,
+  TENANTS,
+} from '../router/paths';
+
 function AppContent() {
-  const location = useLocation();
-  const pathname = location.pathname;
-
   return (
-    <>
-      {pathname !== '/' && (
-        <>
-          <NavBar />
-          <HeaderTop />
-        </>
-      )}
-      {/* <SideMenu /> */}
-      <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/Services' element={<Services />} />
-        <Route path='/Contact' element={<Contact />} />
-        <Route path='/Inquilinos' element={<Inquilinos />} />
-        <Route path='/Amenidades' element={<Amenidades />} />
-        <Route path='/Mantenimientos' element={<Mantenimientos />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-      {/* {pathname !== 'inserte aqui una ruta para controlar vista del componente :)' && <inserte aqui componente :) />} */}
-    </>
+    <Routes>
+      <Route path={HOME} element={<Navigate to={'/login'} />} />
+      <Route path={LOGIN} element={<Login />} />
+      <Route path={CONTACT} element={<Contact />} />
+      <Route element={<PrivateRoute />}>
+        <Route path={DASHBOARD} element={<AdminDashboard />}>
+          <Route index element={<HeaderTop />} />
+          <Route path={SERVICES} element={<Services />} />
+          <Route path={TENANTS} element={<Tenants />} />
+          <Route path={AMENITIES} element={<Amenities />} />
+          <Route path={MAINTENANCE} element={<Maintenance />} />
+        </Route>
+      </Route>
+      <Route path='*' element={<NotFound />} />
+    </Routes>
   );
 }
 

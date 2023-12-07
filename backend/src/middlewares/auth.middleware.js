@@ -1,10 +1,10 @@
 //? Routes protection middleware
 
 const { jwtSecret } = require('../config');
-const { getUserById } = require('../users/users.controllers');
+const { getUserById } = require('../core/users/users.controllers');
 
-const JwtStrategy = require('passport-jwt').Strategy; 
-const ExtractJwt = require('passport-jwt').ExtractJwt; 
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 module.exports = (passport) => {
     const options = {

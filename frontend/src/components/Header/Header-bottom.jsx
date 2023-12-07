@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { AMENITIES, MAINTENANCE, TENANTS } from '../../router/paths';
 
 function HeaderBottom() {
   const location = useLocation();
@@ -9,25 +10,25 @@ function HeaderBottom() {
     // Función para obtener el título y subtítulo según la ruta actual
     const getTitleAndSubtitle = () => {
       switch (location.pathname) {
-        case '/Inquilinos':
+        case TENANTS:
           return {
             title: 'Inquilinos',
             subtitle: 'Gestión de Inquilinos',
           };
-        case '/Mantenimientos':
+        case MAINTENANCE:
           return {
             title: 'Solicitud de Mantenimientos',
             subtitle: 'Gestión de solicitudes para uso de mantenimientos',
           };
-        case '/Amenidades':
+        case AMENITIES:
           return {
             title: 'Solicitud de Amenidades',
             subtitle: 'Gestión de solicitudes para uso de amenidades',
           };
         default:
           return {
-            title: 'Página no encontrada',
-            subtitle: 'Lo sentimos, esta página no existe',
+            title: 'Condominiums App',
+            subtitle: 'Administra tu condominio de forma fácil y rápida',
           };
       }
     };
@@ -37,8 +38,8 @@ function HeaderBottom() {
   }, [location.pathname]);
 
   return (
-    <section className='w-full bg-[#FAFAFA]'>
-      <div className='flex justify-between'>
+    <section className='w-full'>
+      <div className='flex w-full justify-between'>
         <div className='flex flex-col gap-2'>
           <h1 className='text-3xl font-bold text-neutral-800'>
             {headerContent.title}
@@ -47,7 +48,7 @@ function HeaderBottom() {
         </div>
         <div className='flex items-center gap-3'>
           {headerContent.title === 'Solicitud de Mantenimientos' && (
-            <button className='flex items-center justify-center gap-2 rounded border-2 border-primary bg-primary px-3 py-2 text-base font-semibold text-white'>
+            <button className='btn btn-primary'>
               <svg
                 width='16'
                 height='16'
@@ -72,7 +73,7 @@ function HeaderBottom() {
               Agregar un Mantenimiento
             </button>
           )}
-          <button className='flex items-center justify-center gap-2 rounded border-2 border-solid border-neutral-200 px-3 py-2 text-base font-semibold text-neutral-800'>
+          <button className='btn btn-ghost'>
             <svg
               width='17'
               height='16'
@@ -125,7 +126,7 @@ function HeaderBottom() {
           <input
             type='text'
             placeholder='Search by ID number, name...'
-            className='h-full w-full text-base font-normal text-neutral-500 outline-none'
+            className='h-full w-full font-normal text-neutral-500 outline-none'
           />
         </div>
         <button className='flex items-center justify-center gap-2 bg-white px-4 py-2 text-neutral-500'>

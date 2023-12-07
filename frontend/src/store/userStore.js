@@ -46,7 +46,23 @@ export const useUserStore = create((set) => ({
 
       return { status: response.status, data };
     } catch (error) {
-      console.error('Error al intentar iniciar sesión:', error.data.message);
+      console.error('Error al intentar iniciar sesión:', error);
+      set(() => ({ error: error.data.message, loading: false }));
+    }
+  },
+
+  getMyInfo: async () => {
+    try {
+      set(() => ({ loading: true, error: null }));
+
+      const response = await httpService.get('/api/v1/users/me');
+      const { data } = response;
+
+      set(() => ({ user: data, loading: false }));
+
+      return { status: response.status, data };
+    } catch (error) {
+      console.error('Error al intentar obtener el usuario:', error);
       set(() => ({ error: error.data.message, loading: false }));
     }
   },

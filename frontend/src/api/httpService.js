@@ -14,7 +14,7 @@ httpService.interceptors.request.use(
 
     // Request authorization
     if (localStorage.getItem('token')) {
-      config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+      config.headers.Authorization = `jwt ${localStorage.getItem('token')}`;
     }
     return config;
   },
