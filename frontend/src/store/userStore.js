@@ -60,4 +60,41 @@ export const useUserStore = create((set) => ({
       // a definir manejo de error
     }
   },
+
+  register: async ({
+    firstName,
+    lastName,
+    email,
+    password,
+    phone,
+    birthday,
+    gender,
+    role,
+    urlImage,
+  }) => {
+    try {
+      set(() => ({ loading: true, error: null }));
+
+      const response = await httpService.post('/api/v1/auth/register', {
+        firstName,
+        lastName,
+        email,
+        password,
+        phone,
+        birthday,
+        gender,
+        role,
+        urlImage,
+      });
+      const { data } = response;
+
+      localStorage.setItem('token', data.token);
+      set(() => ({ authToken: data.token, loading: false }));
+
+      return { status: response.status, data };
+    } catch (error) {
+      console.error('Error al intentar registrar usuario:', error.data.message);
+      set(() => ({ error: error.data.message, loading: false }));
+    }
+  },
 }));

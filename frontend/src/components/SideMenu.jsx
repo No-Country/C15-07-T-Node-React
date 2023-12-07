@@ -11,15 +11,13 @@ import ChartBar from '../assets/icons/ChartBar.svg';
 import ChartSquare from '../assets/icons/ChartSquare.svg';
 import Settings from '../assets/icons/Settings.svg';
 import Logout from '../assets/icons/Logout.svg';
+import CreateUser from './User/CreateUser';
 
 export const SideMenu = () => {
   return (
     <div>
       <div className='flex flex-col gap-7 px-4 py-4'>
-        <button className='btn btn-primary  flex w-full p-4'>
-          <img src={More} alt='More' />
-          Crear Nueva Cuenta
-        </button>
+        <CreateUser />
 
         <NavLink
           to='/home'

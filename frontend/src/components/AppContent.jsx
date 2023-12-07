@@ -10,6 +10,7 @@ import {
 } from '../pages';
 import NavBar from './NavBar/NavBar';
 import HeaderTop from './Header/Header-top';
+import { SideMenu } from './SideMenu';
 
 // eslint-disable-next-line react/prop-types
 function AppContent() {
@@ -24,7 +25,7 @@ function AppContent() {
           <HeaderTop />
         </>
       )}
-
+      {/* <SideMenu /> */}
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/Services' element={<Services />} />
