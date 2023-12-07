@@ -1,6 +1,6 @@
 import HeaderBottom from '../../components/Header/Header-bottom';
 
-function Inquilinos() {
+function Tenants() {
   return (
     <>
       <HeaderBottom />
@@ -8,4 +8,4 @@ function Inquilinos() {
   );
 }
 
-export default Inquilinos;
+export default Tenants;
