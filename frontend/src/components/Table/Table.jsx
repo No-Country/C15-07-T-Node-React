@@ -14,7 +14,11 @@ function Table({ columns = [], data = [] }) {
           </tr>
         </thead>
         <tbody>
-          {data?.length === 0 && <tr>No data</tr>}
+          {data?.length === 0 && (
+            <tr>
+              <td>No existe el usuario buscado</td>
+            </tr>
+          )}
           {data?.length > 0 &&
             data.map((row, rIndex) => (
               <tr key={`table-row-${row.id || rIndex}`}>

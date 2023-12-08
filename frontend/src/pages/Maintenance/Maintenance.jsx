@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
 import HeaderBottom from '../../components/Header/Header-bottom';
 import Table from '../../components/Table/Table';
 import { TemplateMaintenance } from '../../components/Table/TemplateTable';
+import { useSearch } from '../../store/useSearch';
 
 function Maintenance() {
+  const { searchValue } = useSearch();
   const columns = TemplateMaintenance();
 
   const data = [
@@ -71,11 +74,24 @@ function Maintenance() {
       status: 'Pending',
     },
   ];
+  const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    if (searchValue) {
+      setFilteredData(
+        data.filter((r) =>
+          r.name.toLowerCase().includes(searchValue.toLowerCase()),
+        ),
+      );
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchValue]);
 
   return (
     <>
       <HeaderBottom />
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={filteredData} />
     </>
   );
 }

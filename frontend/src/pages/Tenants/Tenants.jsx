@@ -1,8 +1,12 @@
+import { useEffect, useState } from 'react';
 import HeaderBottom from '../../components/Header/Header-bottom';
 import Table from '../../components/Table/Table';
 import { TemplateTenants } from '../../components/Table/TemplateTable';
+import { useSearch } from '../../store/useSearch';
 
 function Tenants() {
+  const { searchValue } = useSearch();
+
   function handleEdit(id) {
     alert(`Aceptar Amenities ${id}`);
   }
@@ -75,11 +79,24 @@ function Tenants() {
       apartment: '8',
     },
   ];
+  const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    if (searchValue) {
+      setFilteredData(
+        data.filter((r) =>
+          r.name.toLowerCase().includes(searchValue.toLowerCase()),
+        ),
+      );
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchValue]);
 
   return (
     <>
       <HeaderBottom />
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={filteredData} />
     </>
   );
 }
