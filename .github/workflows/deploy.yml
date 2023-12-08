@@ -26,7 +26,9 @@ jobs:
         run: npm run build
 
       - name: Move Static Files to Backend
-        run: npm run move-statics
+        run: |
+          mkdir -p backend/public
+          npm run move-statics
 
       # Pasos para el deploy en Railway
       - name: Install Railway
