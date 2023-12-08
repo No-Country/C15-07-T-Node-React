@@ -6,3 +6,4 @@ export { default as Maintenance } from './Maintenance/Maintenance';
 export { default as NotFound } from './NotFound/NotFound';
 export { default as Services } from './Services/Services';
 export { default as Tenants } from './Tenants/Tenants';
+export { default as Payments } from './Payments/Payments';

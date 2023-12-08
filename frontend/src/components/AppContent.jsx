@@ -8,6 +8,7 @@ import {
   Tenants,
   Amenities,
   Maintenance,
+  Payments,
 } from '../pages';
 
 import PrivateRoute from './PrivateRoute';
@@ -21,6 +22,7 @@ import {
   NOT_FOUND,
   SERVICES,
   TENANTS,
+  PAYMENTS,
 } from '../router/paths';
 import Dashboard from '../pages/AdminDashboard/Dashboard';
 
@@ -37,6 +39,7 @@ function AppContent() {
           <Route path={TENANTS} element={<Tenants />} />
           <Route path={AMENITIES} element={<Amenities />} />
           <Route path={MAINTENANCE} element={<Maintenance />} />
+          <Route path={PAYMENTS} element={<Payments />} />
         </Route>
       </Route>
       <Route path='*' element={<NotFound />} />

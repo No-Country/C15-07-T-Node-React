@@ -1,81 +1,68 @@
 import HeaderBottom from '../../components/Header/Header-bottom';
 import Table from '../../components/Table/Table';
-import { TemplateTenants } from '../../components/Table/TemplateTable';
+import { TemplatePayments } from '../../components/Table/TemplateTable';
 
-function Tenants() {
-  function handleEdit(id) {
-    alert(`Aceptar Amenities ${id}`);
-  }
-
-  const columns = TemplateTenants(handleEdit);
+function Payments() {
+  const columns = TemplatePayments();
 
   const data = [
     {
       id: '5146846548465',
       name: 'Jane Cooper',
       date: '2/19/21',
-      email: 'correo@correo.com',
-      tel: '999-99-99',
-      apartment: '1',
+      status: 'Paid',
+      amount: '500.00',
     },
     {
       id: '5467319467348',
       name: 'Wade Warren',
       date: '5/7/16',
-      email: 'correo1@correo.com',
-      tel: '999-99-99',
-      apartment: '2',
+      status: 'Paid',
+      amount: '500.00',
     },
     {
       id: '1345705945446',
       name: 'Esther Howard',
       date: '9/18/16',
-      email: 'correo2@correo.com',
-      tel: '999-99-99',
-      apartment: '3',
+      status: 'Unpaid',
+      amount: '500.00',
     },
     {
       id: '5440754979777',
-      name: 'Cameron Williamson',
+      name: 'Cancha de futbol',
       date: '2/11/12',
-      email: 'correo2@correo.com',
-      tel: '999-99-99',
-      apartment: '4',
+      status: 'Paid',
+      amount: '500.00',
     },
     {
       id: '1243467984543',
       name: 'Brooklyn Simmons',
       date: '9/18/16',
-      email: 'correo2@correo.com',
-      tel: '999-99-99',
-      apartment: '5',
+      status: 'Unpaid',
+      amount: '500.00',
     },
     {
       id: '8454134649707',
       name: 'Leslie Alexander',
       date: '1/28/17',
-      email: 'correo2@correo.com',
-      tel: '999-99-99',
-      apartment: '6',
+      status: 'Unpaid',
+      amount: '500.00',
     },
     {
       id: '2130164040451',
       name: 'Jenny Wilson',
       date: '5/27/15',
-      email: 'correo2@correo.com',
-      tel: '999-99-99',
-      apartment: '7',
+      status: 'Paid',
+      amount: '500.00',
     },
     {
       id: '0439104645404',
       name: 'Guy Hawkins',
       date: '8/2/19',
-      email: 'correo2@correo.com',
-      tel: '999-99-99',
-      apartment: '8',
+      status: 'Paid',
+      amount: '500.00',
     },
   ];
-
   return (
     <>
       <HeaderBottom />
@@ -84,4 +71,4 @@ function Tenants() {
   );
 }
 
-export default Tenants;
+export default Payments;
