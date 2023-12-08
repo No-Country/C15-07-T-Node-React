@@ -7,7 +7,7 @@ require('../middlewares/auth.middleware')(passport)
 
 //? Main Route
 
-router.get('/',usersServices.getAllUsers);
+router.get('/',usersServices.getAllUsers); //esto es porque userServices es un objeto 
 
 //? Protected routes for each user
 router.route('/me')

@@ -6,7 +6,7 @@ const db = require('./utils/database');
 
 const userRouter = require('./users/users.router');
 const authRouter = require('./auth/auth.router');
-
+const maintenanceRouter = require('./maintenance/maintenance.router')
 
 app.use(express.json());
 app.use(cors())
@@ -31,7 +31,7 @@ db.sync()
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
 
-
+app.use('/api/v1/maintenance', maintenanceRouter)
 
 
 
