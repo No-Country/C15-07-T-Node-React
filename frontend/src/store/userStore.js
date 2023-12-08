@@ -109,7 +109,13 @@ export const useUserStore = create((set) => ({
 
       return { status: response.status, data };
     } catch (error) {
-      console.error('Error al intentar registrar usuario:', error.data.message);
+      console.error(
+        'Error al intentar registrar usuario:',
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+          'Error desconocido',
+      );
       set(() => ({ error: error.data.message, loading: false }));
     }
   },
