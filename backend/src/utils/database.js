@@ -7,14 +7,15 @@ const db = new Sequelize({
     username: config.db.username,
     password: config.db.password,
     database: config.db.dbName,
-    dialectOptions: 
+    dialectOptions:
         process.env.NODE_ENV === 'production'
             ? {
                 ssl: {
                     require: true,
                     rejectUnathorized: false
                 }
-            } : {}
+              } : {},
+              logging : false //elimino los logs de consola
 })
 
 module.exports = db;
