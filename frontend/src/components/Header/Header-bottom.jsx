@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AMENITIES, MAINTENANCE, TENANTS } from '../../router/paths';
+import { useSearch } from '../../store/useSearch';
 
 function HeaderBottom() {
   const location = useLocation();
   const [headerContent, setHeaderContent] = useState('');
+  const { searchValue, setSearchValue } = useSearch();
 
   useEffect(() => {
-    // Función para obtener el título y subtítulo según la ruta actual
     const getTitleAndSubtitle = () => {
       switch (location.pathname) {
         case TENANTS:
@@ -36,7 +37,6 @@ function HeaderBottom() {
     const { title, subtitle } = getTitleAndSubtitle();
     setHeaderContent((prev) => ({ ...prev, title, subtitle }));
   }, [location.pathname]);
-
   return (
     <section className='w-full'>
       <div className='flex w-full justify-between'>
@@ -125,7 +125,9 @@ function HeaderBottom() {
 
           <input
             type='text'
-            placeholder='Search by ID number, name...'
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder='Buscar por nombre...'
             className='h-full w-full font-normal text-neutral-500 outline-none'
           />
         </div>

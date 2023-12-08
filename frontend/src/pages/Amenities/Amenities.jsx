@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
 import HeaderBottom from '../../components/Header/Header-bottom';
 import Table from '../../components/Table/Table';
 import { TemplateAmenities } from '../../components/Table/TemplateTable';
+import { useSearch } from '../../store/useSearch';
 
 function Amenities() {
+  const { searchValue } = useSearch();
   function handleAccept(id) {
     alert(`Aceptar Amenities ${id}`);
   }
@@ -62,10 +65,24 @@ function Amenities() {
     },
   ];
 
+  const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    if (searchValue) {
+      setFilteredData(
+        data.filter((r) =>
+          r.name.toLowerCase().includes(searchValue.toLowerCase()),
+        ),
+      );
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchValue]);
+
   return (
     <>
       <HeaderBottom />
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={filteredData} />
     </>
   );
 }
