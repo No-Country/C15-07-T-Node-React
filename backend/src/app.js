@@ -23,6 +23,7 @@ db.authenticate()
   });
 
 db.sync()
+
   .then(() => {
     console.log('Database Synced');
   })
