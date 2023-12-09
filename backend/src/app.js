@@ -6,6 +6,8 @@ const db = require('./utils/database');
 
 const userRouter = require('./core/users/users.router');
 const authRouter = require('./core/auth/auth.router');
+const amenitieRouter = require( './core/amenities/amenities.router');
+const initModels = require('./models/initModels')
 
 
 app.use(express.json());

@@ -1,17 +1,23 @@
 const amenitiesServices = require('./amenities.services')
 const router = require('express').Router();
 const passport = require('passport');
-const adminMiddleware = require('../middlewares/rol.middleware');
+const adminMiddleware = require('../../middlewares/rol.middleware');
 
-require('../middlewares/auth.middleware')(passport)
+require('../../middlewares/auth.middleware')(passport)
 
 router.route('/')
     .get(amenitiesServices.getAllAmenities)
     .post(passport.authenticate('jwt', {session: false}), adminMiddleware, amenitiesServices.createAmenitie)
 
+
 router.get('/reservations', passport.authenticate('jwt', {session: false}), adminMiddleware, amenitiesServices.getAllAmenitiesReservations)
 
-router.get('/reservations/:user_id', passport.authenticate('jwt', {session: false}), adminMiddleware, amenitiesServices.getAmenitiesReservationsByUser)
+router.get('/reservations/user/:user_id', passport.authenticate('jwt', {session: false}), adminMiddleware, amenitiesServices.getAmenitiesReservationsByUser)
+
+router.route('/reservations/:reservation_id')
+    .get(passport.authenticate('jwt', {session: false}), adminMiddleware, amenitiesServices.getAmenitiesReservationById)
+    .patch(passport.authenticate('jwt', {session: false}), adminMiddleware, amenitiesServices.editAmenitiesReservationByUser)
+    .delete(passport.authenticate('jwt', {session: false}), adminMiddleware, amenitiesServices.deleteAmenitiesReservationByUser)
 
 router.route('/:amenitie_id')
     .get(amenitiesServices.getAmenitieById)

@@ -44,14 +44,20 @@ const createAmenitie = (req, res) => {
 }
 
 const patchAmenitie = (req, res) => {
-    const id = req.params.id;
-    const {amenitieName, amenitieImage} = req.body;
-    amenitiesControllers.updateAmenitie(id, {amenitieName, amenitieImage})
+    const id = req.params.amenitie_id;
+    const {amenitieName, capacity} = req.body;
+    amenitiesControllers.updateAmenitie(id, {amenitieName, capacity})
         .then(data => {
             if(data[0]) {
                 res.status(200).json({message: 'Amenitie edited correctly'})
             } else {
-                res.status(400).json({message: 'Invalid ID'})
+                res.status(400).json({message: 'Invalid ID, or wrong fields',
+            fields: {
+                amenitieName : 'string',
+                capacity: 'integer'
+            }
+
+            })
             }
         })
         .catch(err => {
@@ -60,7 +66,7 @@ const patchAmenitie = (req, res) => {
 }
 
 const deleteAmenitie = (req, res) => {
-    const id = req.params.id;
+    const id = req.params.amenitie_id;
     amenitiesControllers.deleteAmenitie(id)
         .then(data => {
             if(data) {
@@ -118,6 +124,48 @@ const getAmenitiesReservationsByUser = (req, res) => {
         })
 }
 
+const getAmenitiesReservationById = (req, res) => {
+    const id = req.params.reservation_id;
+        amenitiesControllers.getAmenitieReservationByReservationid(id)
+            .then(data => {
+                res.status(200).json(data)
+            })
+            .catch(err => {
+                res.status(400).json(err.message)
+            })
+}
+
+const editAmenitiesReservationByUser = (req, res) => {
+    const id = req.params.reservation_id;
+    const {amenitieId, dateReservation} = req.body;
+    amenitiesControllers.editAmenitiesReservationByUser(id,{amenitieId, dateReservation})
+        .then(data => {
+            if(data[0]) {
+                res.status(200).json(data)
+            } else {
+                res.status(400).json({message: 'Invalid ID, or wrong fields', fields: {
+                    amenitieId: 'integer',
+                    dateReservation: '2000-01-01 06:00:00.000 -0600'
+                }})
+            }
+        })
+        .catch(err => {
+            res.status(400).json({error: err.message})
+        })
+}
+
+const deleteAmenitiesReservationByUser = (req, res) => {
+    const id = req.params.reservation_id;
+    amenitiesControllers.deleteAmenitieReservationByUser()
+        .then(data => {
+            res.status(204).json({message: 'Reservation deleted'})
+        })
+        .catch(err => {
+            res.status(400).json({message: err.message})
+        })
+    
+}
+
 module.exports = {
     getAllAmenities,
     getAmenitieById,
@@ -126,5 +174,8 @@ module.exports = {
     deleteAmenitie,
     postAmenitieToUser,
     getAllAmenitiesReservations,
-    getAmenitiesReservationsByUser
+    getAmenitiesReservationsByUser,
+    editAmenitiesReservationByUser,
+    deleteAmenitiesReservationByUser,
+    getAmenitiesReservationById
 }

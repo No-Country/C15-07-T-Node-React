@@ -1,6 +1,6 @@
 const Amenities = require('./amenities.model')
 const Users = require('./users.model')
-const UsersAmenities = require('./users_amenities')
+const UsersAmenities = require('./users_amenities.model')
 
 const initModels = () => {
 

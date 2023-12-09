@@ -18,6 +18,9 @@ router.route('/me')
 router.route('/me/reservations')    
     .get(passport.authenticate('jwt', {session:false}), usersServices.getMyReservations)
 
+router.route('/me/reservations/:reservation_id')
+    .patch(passport.authenticate('jwt', {session:false}), usersServices.editMyReservation)
+    .delete(passport.authenticate('jwt', {session:false}), usersServices.deleteMyReservation)
 
 router.route('/:id')
     .get(usersServices.getUserById)

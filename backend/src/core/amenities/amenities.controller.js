@@ -1,7 +1,7 @@
 const uuid = require('uuid')
 
 const Amenities = require('../../models/amenities.model');
-const UserAmenities = require('../../models/users_amenities');
+const UserAmenities = require('../../models/users_amenities.model');
 const Users = require('../../models/users.model');
 
 const getAllAmenities = async() => {
@@ -71,6 +71,15 @@ const getAllAmenitiesReservations = async() => {
     return response;
 }
 
+const getAmenitieReservationByReservationid = async(id) => {
+    const response = await UserAmenities.findAll({
+        where: {
+            id
+        }
+    })
+    return response
+}
+
 const getAmenitiesReservationsByUser = async(id) => {
     const response = await UserAmenities.findAll({
         where: {
@@ -78,6 +87,37 @@ const getAmenitiesReservationsByUser = async(id) => {
         }
     })
     return response
+}
+
+const getAmenitieReservationUserId = async(reservation_id) => {
+    const response = await UserAmenities.findOne({
+        where: {
+            id: reservation_id
+        },
+        attributes: {
+            exclude: ['id', 'amenitieId', 'dateReservation', 'createdAt', 'updatedAt', 'userAmenityId', 'amenityId']
+        }
+    })
+    return response
+}
+
+const editAmenitiesReservationByUser = async(id, data) => {
+    const result = await UserAmenities.update(data,{
+        where: {
+            id
+        }
+    })
+    return result
+}
+
+const deleteAmenitieReservationByUser = async (id) => {
+    const response = await UserAmenities.destroy({
+        where: {
+            id
+        }
+    })
+
+    return response;
 }
 
 
@@ -89,5 +129,9 @@ module.exports = {
     deleteAmenitie,
     addAmenitieToUser,
     getAllAmenitiesReservations,
-    getAmenitiesReservationsByUser
+    getAmenitieReservationByReservationid,
+    getAmenitiesReservationsByUser,
+    editAmenitiesReservationByUser,
+    getAmenitieReservationUserId,
+    deleteAmenitieReservationByUser
 }
