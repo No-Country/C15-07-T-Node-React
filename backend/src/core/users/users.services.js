@@ -116,6 +116,7 @@ const deleteMyUser = (req, res) => {
         })
 }
 
+
 const getMyReservations = (req, res) => {
     const id = req.user.id;
     amenenititesControllers.getAmenitiesReservationsByUser(id)
@@ -183,6 +184,7 @@ const deleteMyReservation = (req, res) => {
 
 
 
+
 module.exports = {
     getAllUsers,
     getUserById,
@@ -195,4 +197,5 @@ module.exports = {
     getMyReservations,
     editMyReservation,
     deleteMyReservation
+
 }
