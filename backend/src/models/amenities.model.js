@@ -1,14 +1,14 @@
 const db = require('../utils/database');
 const {DataTypes} = require('sequelize');
 
-const Amenities = db.define('amenities' , {
+const Amenities = db.define('amenities', {
     id: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        autoIncrement: true
     },
-    amenitieName : {
+    amenitieName: {
         type: DataTypes.STRING,
         allowNull: false,
         field: 'amenitie_name'
@@ -31,3 +31,4 @@ const Amenities = db.define('amenities' , {
 });
 
 module.exports = Amenities
+

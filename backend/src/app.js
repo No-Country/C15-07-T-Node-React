@@ -11,6 +11,7 @@ const amenitieRouter = require( './core/amenities/amenities.router');
 const initModels = require('./models/initModels')
 
 
+
 app.use(express.json());
 app.use(cors())
 
@@ -30,7 +31,10 @@ db.sync()
         console.log(err)
     })
 
+
 initModels();
+
+
 
 
 app.get('/', (req, res) => {
