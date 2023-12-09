@@ -197,5 +197,4 @@ module.exports = {
     getMyReservations,
     editMyReservation,
     deleteMyReservation
-
 }

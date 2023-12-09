@@ -1,6 +1,5 @@
-const Maintenance = require('../models/maintenance.models')
+const Maintenance = require('../../models/maintenance.models')
 const uuid = require('uuid')
-//const db = require('../utils/database')
 
 const getAllMaintController = async() => {
   const data = await Maintenance.findAll();

@@ -6,6 +6,10 @@ const db = require('./utils/database');
 
 const userRouter = require('./core/users/users.router');
 const authRouter = require('./core/auth/auth.router');
+<<<<<<< HEAD
+=======
+const maintenanceRouter = require("./core/maintenance/maintenance.router")
+>>>>>>> 28cb78d (feat(backend): adding Amenities)
 const amenitieRouter = require( './core/amenities/amenities.router');
 const initModels = require('./models/initModels')
 
@@ -29,7 +33,18 @@ db.sync()
         console.log(err)
     })
 
+initModels();
 
+
+<<<<<<< HEAD
+=======
+app.use('/api/v1/users', userRouter)
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/amenities', amenitieRouter)
+app.use("/api/v1/maintenance", maintenanceRouter )
+
+
+>>>>>>> 28cb78d (feat(backend): adding Amenities)
 
 app.get('/', (req, res) => {
     res.status(200).json({
