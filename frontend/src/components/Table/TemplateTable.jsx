@@ -142,15 +142,19 @@ export const TemplateMaintenance = () => {
       field: 'status',
       template: (row) => {
         return row.status === 'Completed' ? (
-          <span className='flex items-center justify-center gap-2 rounded-full bg-green-100 text-xs leading-5 text-green-900'>
-            <span className='h-2 w-2 rounded-full bg-green-500'></span>
-            {row.status}
-          </span>
+          <div className='inline-block'>
+            <span className='flex items-center justify-center gap-2 rounded-full bg-green-100 px-[10px] py-1 text-xs font-medium text-green-900'>
+              <span className='h-2 w-2 rounded-full bg-green-500'></span>
+              {row.status}
+            </span>
+          </div>
         ) : (
-          <span className='flex items-center justify-center gap-2 rounded-full bg-yellow-100 text-xs leading-5 text-yellow-900'>
-            <span className='h-2 w-2 rounded-full bg-yellow-400'></span>
-            {row.status}
-          </span>
+          <div className='inline-block'>
+            <span className='flex items-center justify-center gap-2 rounded-full bg-yellow-100 px-[10px] py-1 text-xs font-medium text-yellow-900'>
+              <span className='h-2 w-2 rounded-full bg-yellow-400'></span>
+              {row.status}
+            </span>
+          </div>
         );
       },
     },

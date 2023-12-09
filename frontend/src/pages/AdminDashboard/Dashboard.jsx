@@ -1,4 +1,10 @@
+import TableMaintenance from '../../components/DashboardComponents/TableMaintenance';
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <section className='flex gap-5'>
+      <TableMaintenance />
+    </section>
+  );
 };
 export default Dashboard;

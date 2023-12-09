@@ -35,7 +35,7 @@ function Maintenance() {
     },
     {
       id: '5440754979777',
-      name: 'Cancha de futbol',
+      name: 'Cameron Williamson',
       maintenance: 'Cambio de cerrojo',
       description: 'Lorem ipsum dolor sit amet consectetur.',
       portero: 'Roberto',
