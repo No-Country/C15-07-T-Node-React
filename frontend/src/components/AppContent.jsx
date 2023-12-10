@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import {
   Login,
   Services,
@@ -19,10 +19,10 @@ import {
   HOME,
   LOGIN,
   MAINTENANCE,
-  NOT_FOUND,
   SERVICES,
   TENANTS,
   PAYMENTS,
+  DASHBOARD_HOME,
 } from '../router/paths';
 import Dashboard from '../pages/AdminDashboard/Dashboard';
 
@@ -34,7 +34,8 @@ function AppContent() {
       <Route path={CONTACT} element={<Contact />} />
       <Route element={<PrivateRoute />}>
         <Route path={DASHBOARD} element={<AdminDashboard />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Navigate to={DASHBOARD_HOME} />} />
+          <Route path={DASHBOARD_HOME} element={<Dashboard />} />
           <Route path={SERVICES} element={<Services />} />
           <Route path={TENANTS} element={<Tenants />} />
           <Route path={AMENITIES} element={<Amenities />} />
