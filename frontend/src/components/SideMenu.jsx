@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { Bell, ChartBar, ChartSquare, Drill, Folder } from '../assets/icons';
-import { Home, Logout, More, Settings, User, Users } from '../assets/icons';
+import { Home, Logout, Settings, User, Users } from '../assets/icons';
 import {
   AMENITIES,
-  DASHBOARD,
   MAINTENANCE,
   TENANTS,
   PAYMENTS,
   REPORTS,
+  DASHBOARD_HOME,
 } from '../router/paths';
 import CreateUser from './User/CreateUser';
 
@@ -21,7 +21,7 @@ export const SideMenu = () => {
     <div className='flex min-h-full grow flex-col gap-7 p-4'>
       <CreateUser />
 
-      <NavLink to={DASHBOARD} className={activeStyle}>
+      <NavLink to={DASHBOARD_HOME} className={activeStyle}>
         <div className='w-5'>
           <img src={Home} alt='Home' />
         </div>

@@ -2,6 +2,7 @@ export const HOME = '/';
 export const LOGIN = '/login';
 export const CONTACT = '/contact';
 export const DASHBOARD = '/dashboard';
+export const DASHBOARD_HOME = '/dashboard/home';
 export const SERVICES = '/dashboard/services';
 export const MAINTENANCE = '/dashboard/maintenance';
 export const TENANTS = '/dashboard/tenants';
