@@ -11,9 +11,8 @@ on:
       - '.github/workflows/deploy.yml'
 
 jobs:
-  Build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -34,10 +33,7 @@ jobs:
         run: |
           mkdir -p backend/public
           npm run move-statics
-  Deploy:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
+
       # Pasos para el deploy en Railway
       - name: Install Railway
         run: npm i -g @railway/cli
