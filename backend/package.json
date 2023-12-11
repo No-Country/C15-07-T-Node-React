@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "devback": "nodemon ./src/app.js",
     "start": "node ./src/app.js",
-    "deploy": "railway up --service condominiums"
+    "deploy": "railway up --service condominiums",
+    "lint": "eslint ./src/**/* --ext .js --fix"
   },
   "keywords": [],
   "author": "",
