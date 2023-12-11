@@ -8,7 +8,6 @@ const userRouter = require('./core/users/users.router');
 const authRouter = require('./core/auth/auth.router');
 const maintenanceRouter = require('./core/maintenance/maintenance.router');
 const amenitieRouter = require('./core/amenities/amenities.router');
-const initModels = require('./models/initModels');
 
 app.use(express.json());
 app.use(cors());
@@ -29,8 +28,6 @@ db.sync()
   .catch((err) => {
     console.log(err);
   });
-
-initModels();
 
 app.get('/', (req, res) => {
   res.status(200).json({
