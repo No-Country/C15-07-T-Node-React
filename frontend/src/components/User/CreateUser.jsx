@@ -7,6 +7,7 @@ export default function CreateUser() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const { register: registerUser } = useUserStore();
@@ -27,9 +28,9 @@ export default function CreateUser() {
         'Registro exitoso Datos del usuario:',
         registrationResult.data,
       );
-
       // Cierra el modal después de un registro exitoso
       document.getElementById('my_modal_4').close();
+      reset();
     } catch (error) {
       // Muestra cualquier error que pueda ocurrir durante el registro
       console.error('Error al intentar registrar usuario:', error);
@@ -45,7 +46,7 @@ export default function CreateUser() {
         Crear Nueva Cuenta
       </button>
       <dialog id='my_modal_4' className='open modal '>
-        <div className='modal-box flex flex-col items-center overflow-hidden'>
+        <div className='modal-box flex flex-col items-center overflow-auto overflow-x-hidden'>
           <h3 className='justify-center text-4xl font-bold'>Nuevo Usuario</h3>
           <p className='py-4'>Ingrese la informacion solicitada </p>
 
@@ -55,7 +56,10 @@ export default function CreateUser() {
             onSubmit={handleSubmit(onSubmit)}>
             <div
               className='btn btn-circle btn-ghost btn-sm absolute right-2 top-2'
-              onClick={() => document.getElementById('my_modal_4').close()}>
+              onClick={() => {
+                document.getElementById('my_modal_4').close();
+                reset();
+              }}>
               ✕
             </div>
             <div className='flex space-x-4'>
@@ -172,8 +176,12 @@ export default function CreateUser() {
                 }`}
                 {...register('UserType', { required: true })}>
                 <option value=''></option>
-                <option value='usuario'>Usuario</option>
-                <option value='portero'>Portero</option>
+                <option value='usuario' className='text-neutral-950'>
+                  Usuario
+                </option>
+                <option value='portero' className='text-neutral-950'>
+                  Portero
+                </option>
               </select>
               {errors.UserType && (
                 <span className='mb-1 text-center text-sm text-error-content'>
