@@ -1,4 +1,5 @@
 const usersControllers = require('./users.controllers')
+const amenenititesControllers = require('../amenities/amenities.controller')
 
 const getAllUsers = (req, res) => {
     usersControllers.getAllUsers()
@@ -30,8 +31,7 @@ const registerUser = (req, res) => {
             })
             .catch(err => {
                 res.status(400).json({
-                   error: err.message,
-                   name: firstName
+                   error: err.message
                 })
             })
     } else {
@@ -116,6 +116,75 @@ const deleteMyUser = (req, res) => {
         })
 }
 
+
+const getMyReservations = (req, res) => {
+    const id = req.user.id;
+    amenenititesControllers.getAmenitiesReservationsByUser(id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({message: err.message})
+        })
+}
+
+const editMyReservation = (req, res) => {
+    const reservation_id = req.params.reservation_id;
+    const user_id = req.user.id;
+    const {amenitieId, dateReservation} = req.body;
+    let userIdReservation;
+
+        amenenititesControllers.getAmenitieReservationUserId(reservation_id)
+        .then(data => {
+            userIdReservation = data;
+            if(userIdReservation.userId == user_id) {
+                amenenititesControllers.editAmenitiesReservationByUser(reservation_id, {amenitieId, dateReservation})
+                    .then(response => {
+                        res.status(200).json(response)
+                    })
+                    .catch(err => {
+                        res.status(400).json(err.message)
+                    })
+            } else {
+                res.status(400).json({message: 'You can only edit your own reservations'})
+            }
+            
+        })
+        .catch(err => {
+                    res.status(400).json({message: 'You cannot edit this reservation'})
+        })
+
+}
+
+const deleteMyReservation = (req, res) => {
+    const reservation_id = req.params.reservation_id;
+    const user_id = req.user.id;
+    let userIdReservation;
+
+    amenenititesControllers.getAmenitieReservationUserId(reservation_id)
+        .then(data => {
+            userIdReservation = data;
+            if(userIdReservation.userId == user_id) {
+                amenenititesControllers.deleteAmenitieReservationByUser(reservation_id)
+                    .then(response => {
+                        res.status(200).json(response)
+                    })
+                    .catch(err => {
+                        res.status(400).json(err.message)
+                    })
+            } else {
+                res.status(400).json({message: 'You can only delete your own reservations'})
+            }
+            
+        })
+        .catch(err => {
+                    res.status(400).json({message: 'You cannot delete this reservation'})
+        })
+}
+
+
+
+
 module.exports = {
     getAllUsers,
     getUserById,
@@ -124,5 +193,8 @@ module.exports = {
     deleteUser,
     getMyUser,
     patchMyUser,
-    deleteMyUser
+    deleteMyUser,
+    getMyReservations,
+    editMyReservation,
+    deleteMyReservation
 }

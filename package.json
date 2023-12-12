@@ -8,11 +8,15 @@
     "frontend"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test -w frontend",
+    "test:ci": "npm run test:ci -w frontend",
+    "test:coverage": "npm run test:coverage -w frontend",
     "build": "npm run build -w frontend",
     "prepare": "husky install",
     "dev": "npm run dev -w frontend",
-    "devback": "npm run build && npm run devback -w backend"
+    "devback": "npm run build && npm run devback -w backend",
+    "move-statics": "npm run build && cp -R frontend/dist/* backend/public/",
+    "deploy": "npm run deploy -w backend"
   },
   "repository": {
     "type": "git",
@@ -32,6 +36,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-refresh": "^0.4.4",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-vitest": "^0.3.10",
     "husky": "^8.0.0",
     "lint-staged": "^15.1.0",
     "prettier": "^3.1.0",

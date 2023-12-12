@@ -5,7 +5,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "conventionalCommits.scopes": ["frontend", "backend"],
+  "conventionalCommits.scopes": ["frontend", "backend", "testing"],
   "editor.inlineSuggest.showToolbar": "onHover",
   "files.associations": {
     "*.css": "tailwindcss"

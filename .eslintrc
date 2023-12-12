@@ -30,23 +30,45 @@
   },
   "overrides": [
     {
+      // Reglas específicas para archivos JS y JSX
       "files": [
-        "*.js",
-        "*.jsx"
+        "frontend/**/*.{js,jsx,ts,tsx}"
       ],
       "rules": {
-        // Reglas específicas para archivos JS y JSX
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off"
       }
     },
     {
+      // Reglas específicas para módulos ES
       "files": [
         "*.mjs"
       ],
       "rules": {
-        // Reglas específicas para módulos ES
         "no-process-env": "off"
+      }
+    },
+    {
+      // Reglas específicas para archivos de pruebas
+      "files": [
+        "frontend/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+      ],
+      "extends": [
+        "plugin:vitest/recommended"
+      ],
+      "rules": {
+        "vitest/max-nested-describe": [
+          "error",
+          {
+            "max": 3
+          }
+        ]
+      },
+      "plugins": [
+        "vitest"
+      ],
+      "env": {
+        "jest": true
       }
     }
   ]

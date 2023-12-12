@@ -19,6 +19,11 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Install Dependencies
+        run: |
+          rm package-lock.json
+          npm install
+
       - name: Build Frontend
         run: npm run build
 
@@ -32,5 +37,5 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git checkout -b testing
-          git merge --no-ff ${{ github.event.pull_request.head.ref }} -m "Merge branch '${{ github.event.pull_request.head.ref }}' into testing"
+          git merge --no-ff ${{ github.event.pull_request.head.ref }} -m "ci: Merge branch '${{ github.event.pull_request.head.ref }}' into testing"
           git push

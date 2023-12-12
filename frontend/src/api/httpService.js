@@ -13,10 +13,8 @@ httpService.interceptors.request.use(
     // Do something before request is sent
 
     // Request authorization
-    if (sessionStorage.getItem('token')) {
-      config.headers.Authorization = `Bearer ${sessionStorage.getItem(
-        'token',
-      )}`;
+    if (localStorage.getItem('token')) {
+      config.headers.Authorization = `jwt ${localStorage.getItem('token')}`;
     }
     return config;
   },
@@ -38,8 +36,7 @@ httpService.interceptors.response.use(
   },
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-
     // Do something with response error
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   },
 );
