@@ -21,14 +21,15 @@ function Login() {
   const onSubmit = async (data) => {
     const res = await login(data);
 
-    const info = await getMyInfo();
-
-    if (info.status === 200 || res.status === 200) navigate('/dashboard');
+    if (res.status === 200) {
+      const info = await getMyInfo();
+      if (info?.status === 200) navigate('/dashboard/home');
+    }
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) navigate('/dashboard');
-  }, [authToken]);
+    if (localStorage.getItem('token')) navigate('/dashboard/home');
+  }, [authToken, navigate]);
 
   return (
     <section className='flex h-screen w-full items-start'>
@@ -118,11 +119,11 @@ function Login() {
                 'Iniciar sesión'
               )}
             </button>
-            <button
+            {/* <button
               className='btn btn-secondary my-2 flex w-full p-4'
               disabled={loading}>
               Registro
-            </button>
+            </button> */}
           </div>
         </div>
 

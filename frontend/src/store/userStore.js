@@ -70,7 +70,7 @@ export const useUserStore = create((set) => ({
   logout: async () => {
     try {
       await localStorage.removeItem('token');
-      set(() => ({ authToken: '' }));
+      set(() => ({ user: null, authToken: null, loading: false, error: null }));
     } catch (error) {
       console.error('Error al intentar cerrar sesión:', error);
       // a definir manejo de error
