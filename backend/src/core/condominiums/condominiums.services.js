@@ -1,4 +1,4 @@
-const {getAllCondoController, createNewCondo, patchCondoController, delCondoController} = require('./condominiums.controllers')
+const {getAllCondoController, createNewCondo, patchCondoController, delCondoController} = require('../../core/condominiums/condominiums.controllers')
 
 
 const getAllCondoHandler = async(req, res) => {

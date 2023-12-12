@@ -1,14 +1,14 @@
-const condos = require('../models/condominiums.models');
-const uuid = require('uuid')
+const condos = require('../../models/condominiums.models');
+const uuid = require('uuid');
 //const db = require('../utils/database')
 
-const getAllCondoController = async() => {
+const getAllCondoController = async () => {
   const data = await condos.findAll();
   return data;
 };
 
 const createNewCondo = async (user_id, tower, room) => {
-  if ( tower && room) {
+  if (tower && room) {
     return await condos.create({
       id: uuid.v4(),
       user_id,
@@ -19,7 +19,6 @@ const createNewCondo = async (user_id, tower, room) => {
     throw new Error('Faltan description o status');
   }
 };
-
 
 const patchCondoController = async (id, newData) => {
   try {
@@ -42,16 +41,16 @@ const delCondoController = async (id) => {
       throw new Error('Maintenance not found');
     }
     await delMaintenance.destroy();
-    return "delete Condominium";
+    return 'delete Condominium';
   } catch (error) {
     console.error('Error no delete maintenance:', error.message);
     throw error;
   }
 };
 
-
-
-
-
-module.exports =
-{getAllCondoController, createNewCondo, patchCondoController, delCondoController}
+module.exports = {
+  getAllCondoController,
+  createNewCondo,
+  patchCondoController,
+  delCondoController
+};

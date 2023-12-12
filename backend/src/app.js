@@ -7,8 +7,10 @@ const db = require('./utils/database');
 const userRouter = require('./core/users/users.router');
 const authRouter = require('./core/auth/auth.router');
 const maintenanceRouter = require('./core/maintenance/maintenance.router');
-const amenitieRouter = require('./core/amenities/amenities.router');
 const condominuimsRouter = require('./core/condominiums/condominiums.router');
+const complaintRouter = require('./core/complaint/complaint.router');
+const amenitieRouter = require('./core/amenities/amenities.router');
+const initModels = require('./models/initModels');
 
 app.use(express.json());
 app.use(cors());
@@ -23,12 +25,14 @@ db.authenticate()
   });
 
 db.sync()
-  .then(() => {
-    console.log('Database Synced');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    .then(()=> {
+        console.log('Database Synced')
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+
 
 app.get('/', (req, res) => {
   res.status(200).json({
@@ -41,7 +45,8 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/amenities', amenitieRouter);
 app.use('/api/v1/maintenance', maintenanceRouter);
-app.use('/api/v1/condominuims', condominuimsRouter);
+app.use('/api/v1/complaint', complaintRouter);
+app.use("/api/v1/condominuims", condominuimsRouter )
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
