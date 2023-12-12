@@ -1,14 +1,22 @@
-import { Link } from 'react-router-dom';
-import logo from '../../../public/condominium.svg';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUserStore } from '../../store/userStore';
+import { LOGIN } from '../../router/paths';
 
 function NavBar() {
   const user = useUserStore((state) => state.user);
+  const logout = useUserStore((state) => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate(LOGIN);
+  };
+
   return (
     <header className='navbar z-10 bg-base-100 pl-4 pr-8 shadow'>
       <div className='flex-1'>
         <Link className='btn btn-ghost text-xl hover:bg-neutral hover:text-secondary'>
-          <img src='/condominiums.svg' alt='' className='h-8' />
+          <img src='/condominium.svg' alt='' className='h-8' />
           <span className='hidden sm:inline-block'>Condominiums</span>
         </Link>
       </div>
@@ -97,7 +105,7 @@ function NavBar() {
               <Link>Configuración</Link>
             </li>
             <li>
-              <Link>Cerrar sesión</Link>
+              <div onClick={handleLogout}>Cerrar sesión</div>
             </li>
           </ul>
         </div>

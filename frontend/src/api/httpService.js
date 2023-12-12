@@ -11,10 +11,14 @@ export default httpService;
 httpService.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-
+    console.log('Interceptor Request (Outgoing) ', config);
     // Request authorization
-    if (localStorage.getItem('token')) {
-      config.headers.Authorization = `jwt ${localStorage.getItem('token')}`;
+    if (!config.url.endsWith('/api/v1/auth/login')) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Añade la cabecera de autorización solo si no es la solicitud de login
+        config.headers.Authorization = `jwt ${token}`;
+      }
     }
     return config;
   },
