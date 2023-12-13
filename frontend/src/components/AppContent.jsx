@@ -23,8 +23,10 @@ import {
   TENANTS,
   PAYMENTS,
   DASHBOARD_HOME,
+  SUGGS,
 } from '../router/paths';
 import Dashboard from '../pages/AdminDashboard/Dashboard';
+import Suggs from '../pages/Suggs/Suggs';
 
 function AppContent() {
   return (
@@ -41,6 +43,7 @@ function AppContent() {
           <Route path={AMENITIES} element={<Amenities />} />
           <Route path={MAINTENANCE} element={<Maintenance />} />
           <Route path={PAYMENTS} element={<Payments />} />
+          <Route path={SUGGS} element={<Suggs />} />
         </Route>
       </Route>
       <Route path='*' element={<NotFound />} />
