@@ -1,7 +1,7 @@
-const Maintenance = require('../../models/maintenance.models')
-const uuid = require('uuid')
+const Maintenance = require('../../models/maintenance.models');
+const uuid = require('uuid');
 
-const getAllMaintController = async() => {
+const getAllMaintController = async () => {
   const data = await Maintenance.findAll();
   return data;
 };
@@ -19,7 +19,6 @@ const createNewMaint = async (user_id, title, description, status) => {
     throw new Error('Faltan description o status');
   }
 };
-
 
 const patchMaintController = async (id, newData) => {
   try {
@@ -42,16 +41,16 @@ const delMaintController = async (id) => {
       throw new Error('Maintenance not found');
     }
     await delMaintenance.destroy();
-    return "delete Maintenance";
+    return 'delete Maintenance';
   } catch (error) {
     console.error('Error no delete maintenance:', error.message);
     throw error;
   }
 };
 
-
-
-
-
-module.exports =
-{getAllMaintController, createNewMaint, patchMaintController, delMaintController}
+module.exports = {
+  getAllMaintController,
+  createNewMaint,
+  patchMaintController,
+  delMaintController
+};

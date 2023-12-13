@@ -1,9 +1,11 @@
 {
   "frontend/**/*": "node scripts/verifyScope.js frontend",
   "backend/**/*": "node scripts/verifyScope.js backend",
-  "frontend/*.{js,jsx,ts,tsx}": ["prettier --write", "eslint --fix"],
+  "frontend/**/*.{js,jsx,ts,tsx}": ["prettier --write", "eslint --fix"],
+  "backend/**/*.{js,ts}": ["prettier --write", "eslint --fix"],
   "*.json": ["prettier --write"],
   "*.ts": ["prettier --write", "eslint --fix"],
+  "*.js": ["prettier --write", "eslint --fix"],
   "*.html": ["prettier --write"],
   "*.scss": "prettier --write"
 }
