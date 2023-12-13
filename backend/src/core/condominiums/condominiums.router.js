@@ -1,6 +1,5 @@
 const router = require('express').Router();
-//const {getAllMaintenance} = require('./maintenance.controllers')
-const {postCondoHandler, getAllCondoHandler, updateCondoHandler, deleteCondoHandler} = require('./condominiums.services')
+const {postCondoHandler, getAllCondoHandler, updateCondoHandler, deleteCondoHandler} = require('../../core/condominiums/condominiums.services')
 
 //? Main Route
 

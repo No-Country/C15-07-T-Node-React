@@ -1,17 +1,12 @@
-const {
-  getAllCondoController,
-  createNewCondo,
-  patchCondoController,
-  delCondoController
-} = require('./condominiums.controllers');
 
-const getAllCondoHandler = async (req, res) => {
-  const getAllCondo = await getAllCondoController();
-  if (getAllCondo) {
-    res.status(200).json(getAllCondo);
-  } else {
-    res.status(404).json({ message: 'Condominium not found' });
-  }
+const {getAllCondoController, createNewCondo, patchCondoController, delCondoController} = require('../../core/condominiums/condominiums.controllers')
+const getAllCondoHandler = async(req, res) => {
+    const getAllCondo = await getAllCondoController();
+    if(getAllCondo){
+      res.status(200).json(getAllCondo);
+    }else{
+      res.status(404).json({message:"Condominium not found"});
+    }
 };
 
 const postCondoHandler = async (req, res) => {

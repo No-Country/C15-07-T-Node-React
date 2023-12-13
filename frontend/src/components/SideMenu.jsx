@@ -10,8 +10,15 @@ import {
   DASHBOARD_HOME,
 } from '../router/paths';
 import CreateUser from './User/CreateUser';
+import { useUserStore } from '../store/userStore';
 
 export const SideMenu = () => {
+  const logout = useUserStore((state) => state.logout);
+
+  const handleLogout = () => {
+    logout();
+  };
+
   const activeStyle = ({ isActive }) =>
     `flex items-center gap-3 rounded-md p-1 hover:bg-neutral/30 ${
       isActive ? 'bg-neutral/80' : ''
@@ -110,12 +117,14 @@ export const SideMenu = () => {
           <div className=' font-medium  text-zinc-700'>Configuraciones</div>
         </NavLink>
 
-        <NavLink to='/' className={activeStyle}>
+        <div
+          onClick={handleLogout}
+          className={`${activeStyle} flex cursor-pointer`}>
           <div className='w-5'>
             <img src={Logout} alt='Cerrar sesión' />
           </div>
           <div className=' font-medium  text-zinc-700'>Cerrar sesión</div>
-        </NavLink>
+        </div>
       </div>
     </div>
   );
