@@ -96,7 +96,7 @@ function TableMaintenance() {
   };
 
   return (
-    <section className='w-[60%] rounded-[10px] border border-gray-200 bg-white pt-4'>
+    <section className='w-full rounded-[10px] border border-gray-200 bg-white pt-4'>
       <div className='flex items-start justify-between px-4'>
         <div className='flex flex-col gap-1'>
           <h3 className='text-base font-bold text-gray-900'>
@@ -114,7 +114,8 @@ function TableMaintenance() {
               height='12'
               viewBox='0 0 11 12'
               fill='none'
-              xmlns='http://www.w3.org/2000/svg'>
+              xmlns='http://www.w3.org/2000/svg'
+            >
               <path
                 d='M4.125 2.79171L7.33333 6.00004L4.125 9.20837'
                 stroke='#828282'
@@ -130,26 +131,29 @@ function TableMaintenance() {
         <tbody>
           {renderData?.length > 0 &&
             renderData.map((row) => (
-              <tr key={row.id} className='border-b-2 border-neutral-100'>
+              <tr key={row.id} className='border-b-2 border-neutral-100 px-4'>
                 <td className='inline-block px-2 py-4'>
                   <div
                     className={`flex items-center justify-start gap-2 rounded-full px-[10px] py-1 ${
                       row.status === 'Completed'
                         ? 'bg-green-100'
                         : 'bg-yellow-100'
-                    }`}>
+                    }`}
+                  >
                     <span
                       className={`h-2 w-2 rounded-full ${
                         row.status === 'Completed'
                           ? 'bg-green-500'
                           : 'bg-yellow-500'
-                      }`}></span>
+                      }`}
+                    ></span>
                     <p
                       className={`text-xs font-medium ${
                         row.status === 'Completed'
                           ? 'text-green-900'
                           : 'text-yellow-900'
-                      }`}>
+                      }`}
+                    >
                       {row.status}
                     </p>
                   </div>
