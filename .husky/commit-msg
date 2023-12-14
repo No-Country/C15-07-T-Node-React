@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-if head -1 "$1" | grep -qE '^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|ci|chore|types|build|revert)(\(.+\))?: .{1,80}$'
-then
-  exit 0
-else
-  echo "Aborting commit. Your commit message is invalid. Must be of the form 'type(scope): subject'"
-  exit 1
-fi
-
