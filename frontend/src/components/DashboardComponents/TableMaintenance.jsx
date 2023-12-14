@@ -88,9 +88,7 @@ function TableMaintenance() {
 
   const calcularDias = (date) => {
     const fechaActual = new Date();
-    console.log(fechaActual);
     const fechaIngresada = new Date(date);
-    console.log(fechaIngresada);
     const diferencia = fechaActual.getTime() - fechaIngresada.getTime();
     return Math.ceil(diferencia / (1000 * 3600 * 24));
   };
