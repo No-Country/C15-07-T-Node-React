@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --error-color: #ef4565;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+  @apply text-secondary;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  @apply text-base-200;
+}
+
+.input-error {
+  @apply btn-error text-error placeholder-error-content;
+}

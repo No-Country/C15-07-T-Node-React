@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "mike-co.import-sorter",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

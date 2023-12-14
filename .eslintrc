@@ -1,0 +1,75 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "eqeqeq": [
+      "error",
+      "always"
+    ]
+  },
+  "overrides": [
+    {
+      // Reglas específicas para archivos JS y JSX
+      "files": [
+        "frontend/**/*.{js,jsx,ts,tsx}"
+      ],
+      "rules": {
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    },
+    {
+      // Reglas específicas para módulos ES
+      "files": [
+        "*.mjs"
+      ],
+      "rules": {
+        "no-process-env": "off"
+      }
+    },
+    {
+      // Reglas específicas para archivos de pruebas
+      "files": [
+        "frontend/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+      ],
+      "extends": [
+        "plugin:vitest/recommended"
+      ],
+      "rules": {
+        "vitest/max-nested-describe": [
+          "error",
+          {
+            "max": 3
+          }
+        ]
+      },
+      "plugins": [
+        "vitest"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}
