@@ -1,3 +1,5 @@
+import { useDownloadPdf } from '../../store/useDownloadPdf';
+import { useReactToPrint } from 'react-to-print';
 import {
   AreaChart,
   Area,
@@ -7,6 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
 
 const data = [
   {
@@ -78,8 +81,36 @@ CustomTooltip.propTypes = {
 };
 
 export default function PaymentsChart() {
+  function handleButtonPrint() {
+    if (!isPrinting) {
+      setIsPrinting(true);
+    }
+  }
+
+  const tableRef = useRef(null);
+  const isPrinting = useDownloadPdf((state) => state.isPrinting);
+  const setIsPrinting = useDownloadPdf((state) => state.setIsPrinting);
+  const handlePrint = useReactToPrint({
+    content: () => tableRef.current,
+  });
+
+  useEffect(() => {
+    if (isPrinting) {
+      handlePrint();
+      setIsPrinting(false);
+    }
+  }, [isPrinting, setIsPrinting, handlePrint]);
+
+  const getPageMargins = () => {
+    return `@page { margin: 12px !important; };`;
+  };
+
   return (
-    <div className='min-h-72 relative w-full rounded-[10px] border border-gray-200 bg-white p-4'>
+    <div
+      className='min-h-72 relative w-full rounded-[10px] border border-gray-200 bg-white p-4'
+      ref={tableRef}
+    >
+      <style>{getPageMargins()}</style>
       <div className='absolute z-20 flex w-full items-center justify-between gap-4'>
         <h3 className='text-base font-bold text-gray-900'>
           Reporte de ingresos
@@ -125,7 +156,9 @@ export default function PaymentsChart() {
               strokeLinejoin='round'
             />
           </svg>
-          <span className='hidden xl:inline'>Exportar PDF</span>
+          <span className='hidden xl:inline' onClick={handleButtonPrint}>
+            Exportar PDF
+          </span>
         </button>
       </div>
       <ResponsiveContainer width='100%' height='100%'>

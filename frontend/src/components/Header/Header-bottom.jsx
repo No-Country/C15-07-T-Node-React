@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AMENITIES, MAINTENANCE, TENANTS, SUGGS } from '../../router/paths';
 import { useSearch } from '../../store/useSearch';
+import { useDownloadPdf } from '../../store/useDownloadPdf';
 import ModalComponent from '../Modal/ModalComponent';
 import useFormData from '../../store/useFortData';
 
@@ -10,7 +11,16 @@ function HeaderBottom() {
   const [headerContent, setHeaderContent] = useState('');
   const { searchValue, setSearchValue } = useSearch();
 
-  const formData = useFormData((state) => state.formData);
+  const isPrinting = useDownloadPdf((state) => state.isPrinting);
+  const setIsPrinting = useDownloadPdf((state) => state.setIsPrinting);
+
+  function handlePrint() {
+    if (!isPrinting) {
+      setIsPrinting(true);
+    }
+  }
+
+  // const formData = useFormData((state) => state.formData);
   const {
     sendMaintenanceRequest,
     sendAmenitiesRequest,
@@ -98,13 +108,14 @@ function HeaderBottom() {
               onSubmit={handleSubmit}
             />
           )}
-          <button className='btn btn-ghost'>
+          <button className='btn btn-ghost' onClick={handlePrint}>
             <svg
               width='17'
               height='16'
               viewBox='0 0 17 16'
               fill='none'
-              xmlns='http://www.w3.org/2000/svg'>
+              xmlns='http://www.w3.org/2000/svg'
+            >
               <path
                 d='M14.5 10V12.6667C14.5 13.0203 14.3595 13.3594 14.1095 13.6095C13.8594 13.8595 13.5203 14 13.1667 14H3.83333C3.47971 14 3.14057 13.8595 2.89052 13.6095C2.64048 13.3594 2.5 13.0203 2.5 12.6667V10'
                 stroke='#191D23'
@@ -139,7 +150,8 @@ function HeaderBottom() {
             height='16'
             viewBox='0 0 16 16'
             fill='none'
-            xmlns='http://www.w3.org/2000/svg'>
+            xmlns='http://www.w3.org/2000/svg'
+          >
             <path
               fillRule='evenodd'
               clipRule='evenodd'
@@ -162,7 +174,8 @@ function HeaderBottom() {
             height='16'
             viewBox='0 0 16 16'
             fill='none'
-            xmlns='http://www.w3.org/2000/svg'>
+            xmlns='http://www.w3.org/2000/svg'
+          >
             <path
               d='M14.6667 2H1.33334L6.66668 8.30667V12.6667L9.33334 14V8.30667L14.6667 2Z'
               stroke='#64748B'
