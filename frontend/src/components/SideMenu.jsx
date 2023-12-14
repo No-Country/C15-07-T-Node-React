@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Bell, ChartBar, ChartSquare, Drill, Folder } from '../assets/icons';
 import { Home, Logout, Settings, User, Users } from '../assets/icons';
 import {
@@ -9,15 +9,19 @@ import {
   REPORTS,
   DASHBOARD_HOME,
   SUGGS,
+  LOGIN,
 } from '../router/paths';
 import CreateUser from './User/CreateUser';
 import { useUserStore } from '../store/userStore';
 
 export const SideMenu = () => {
   const logout = useUserStore((state) => state.logout);
+  const user = useUserStore((state) => state.user);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
+    navigate(LOGIN);
   };
 
   const activeStyle = ({ isActive }) =>
@@ -26,8 +30,8 @@ export const SideMenu = () => {
     }`;
 
   return (
-    <div className='flex min-h-full grow flex-col gap-7 p-4'>
-      <CreateUser />
+    <div className='fixed flex  min-h-full grow flex-col gap-7 p-4'>
+      {user.role == 'admin' ? <CreateUser /> : null}
 
       <NavLink to={DASHBOARD_HOME} className={activeStyle}>
         <div className='w-5'>
@@ -36,24 +40,26 @@ export const SideMenu = () => {
         <div className='font-medium text-zinc-700'>Home</div>
       </NavLink>
 
-      <div>
-        <div className='text-m  mb-2 uppercase text-zinc-400'>Personas</div>
-        <div className='flex flex-col gap-1'>
-          <NavLink to={TENANTS} className={activeStyle}>
-            <div className='w-5'>
-              <img src={Users} alt='Inquilinos' />
-            </div>
-            <div className='font-medium text-zinc-700'>Inquilinos</div>
-          </NavLink>
+      {user.role == 'admin' ? (
+        <div>
+          <div className='text-m  mb-2 uppercase text-zinc-400'>Personas</div>
+          <div className='flex flex-col gap-1'>
+            <NavLink to={TENANTS} className={activeStyle}>
+              <div className='w-5'>
+                <img src={Users} alt='Inquilinos' />
+              </div>
+              <div className='font-medium text-zinc-700'>Inquilinos</div>
+            </NavLink>
 
-          <NavLink to='/' className={activeStyle}>
-            <div className='w-5'>
-              <img src={User} alt='Porteros' />
-            </div>
-            <div className=' font-medium  text-zinc-700'>Porteros</div>
-          </NavLink>
+            <NavLink to='/' className={activeStyle}>
+              <div className='w-5'>
+                <img src={User} alt='Porteros' />
+              </div>
+              <div className=' font-medium  text-zinc-700'>Porteros</div>
+            </NavLink>
+          </div>
         </div>
-      </div>
+      ) : null}
 
       <div>
         <div className='mb-2  uppercase text-zinc-400'>Comunicación</div>

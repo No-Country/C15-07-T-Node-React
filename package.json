@@ -13,6 +13,8 @@
     "test:coverage": "npm run test:coverage -w frontend",
     "build": "npm run build -w frontend",
     "prepare": "husky install",
+    "lint": "npm run lint -w frontend",
+    "lint:back": "npm run lint -w backend",
     "dev": "npm run dev -w frontend",
     "devback": "npm run build && npm run devback -w backend",
     "move-statics": "npm run build && cp -R frontend/dist/* backend/public/",
