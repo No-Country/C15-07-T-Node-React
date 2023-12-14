@@ -6,13 +6,24 @@ import { LOGIN } from '../router/paths';
 
 const PrivateRoute = () => {
   const authToken = useUserStore((state) => state.authToken);
+  const setAuthToken = useUserStore((state) => state.setAuthToken);
+  const getMyInfo = useUserStore((state) => state.getMyInfo);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!authToken) {
-      navigate(LOGIN);
+      const token = localStorage.getItem('token');
+      if (token) {
+        restoreSession();
+      } else {
+        navigate(LOGIN);
+      }
     }
-  }, [authToken, navigate]);
+    async function restoreSession() {
+      setAuthToken();
+      await getMyInfo();
+    }
+  }, [setAuthToken, authToken, getMyInfo, navigate]);
 
   return (
     <>

@@ -8,7 +8,7 @@ const AdminDashboard = () => {
       <div className='flex min-h-full min-w-[300px] grow flex-col p-3'>
         <SideMenu />
       </div>
-      <div className='w-full p-5'>
+      <div className='w-full grow p-5'>
         <HeaderTop />
         <Outlet />
       </div>
