@@ -9,7 +9,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useUserStore } from '../../store/userStore';
 
 const data = [
   {
@@ -68,8 +69,8 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload) {
     return (
       <div className='rounded-lg border border-accent bg-white p-2'>
-        <p>{payload[0].payload.month}</p>
-        <p>{`$ ${payload[0].value}`}</p>
+        <p>{payload[0]?.payload.month}</p>
+        <p>{`$ ${payload[0]?.value}`}</p>
       </div>
     );
   }
@@ -81,15 +82,18 @@ CustomTooltip.propTypes = {
 };
 
 export default function PaymentsChart() {
+  const [payments, setPayments] = useState([]);
+  const [activeMonths, setActiveMonths] = useState(12);
+  const tableRef = useRef(null);
+  const isPrinting = useDownloadPdf((state) => state.isPrinting);
+  const setIsPrinting = useDownloadPdf((state) => state.setIsPrinting);
+
   function handleButtonPrint() {
     if (!isPrinting) {
       setIsPrinting(true);
     }
   }
 
-  const tableRef = useRef(null);
-  const isPrinting = useDownloadPdf((state) => state.isPrinting);
-  const setIsPrinting = useDownloadPdf((state) => state.setIsPrinting);
   const handlePrint = useReactToPrint({
     content: () => tableRef.current,
   });
@@ -105,9 +109,20 @@ export default function PaymentsChart() {
     return `@page { margin: 12px !important; };`;
   };
 
+  function handleShowMonths(array, n) {
+    if (n > array.length) {
+      console.warn(
+        'El número n es mayor que la longitud del array. Devolviendo el array completo.',
+      );
+      setPayments([...array]);
+    }
+    setPayments([...array.slice(-n)]);
+    setActiveMonths(n);
+  }
+  const loading = useUserStore((state) => state.loading);
   return (
     <div
-      className='min-h-72 relative w-full rounded-[10px] border border-gray-200 bg-white p-4'
+      className='relative min-h-[160px] w-full rounded-[10px] border border-gray-200 bg-white p-4 sm:h-[340px]'
       ref={tableRef}
     >
       <style>{getPageMargins()}</style>
@@ -116,10 +131,20 @@ export default function PaymentsChart() {
           Reporte de ingresos
         </h3>
         <div className='z-10 flex gap-2'>
-          <button className='btn btn-ghost btn-outline btn-sm font-bold text-gray-500 hover:btn-secondary'>
+          <button
+            onClick={() => handleShowMonths(data, 12)}
+            className={`btn btn-ghost ${
+              activeMonths === 12 ? 'btn-outline hover:btn-secondary' : ''
+            } btn-sm font-bold text-gray-500`}
+          >
             12 Meses
           </button>
-          <button className='btn  btn-ghost btn-sm font-bold text-gray-500'>
+          <button
+            onClick={() => handleShowMonths(data, 6)}
+            className={`btn btn-ghost ${
+              activeMonths === 6 ? 'btn-outline hover:btn-secondary' : ''
+            } btn-sm font-bold text-gray-500`}
+          >
             6 Meses
           </button>
           <button className='btn  btn-ghost btn-sm font-bold text-gray-500'>
@@ -161,35 +186,48 @@ export default function PaymentsChart() {
           </span>
         </button>
       </div>
-      <ResponsiveContainer width='100%' height='100%'>
-        <AreaChart
-          data={data}
-          vertical={false}
-          margin={{
-            top: 60,
-            right: 0,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid vertical={false} fillOpacity={0.16} stroke='#e0e8e0' />
-          <XAxis
-            dataKey='month'
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            tick={{ stroke: '#9B9EAC' }}
-          />
-          <Tooltip content={CustomTooltip} />
-          <Area
-            type='monotone'
-            dataKey='paid'
-            stroke='#094067'
-            strokeWidth={2}
-            fill='#d8eefe'
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+      {loading ? (
+        <div className='flex h-full w-full items-center justify-center'>
+          Cargando
+          <span className='loading loading-spinner loading-md ml-4 pt-24'></span>
+        </div>
+      ) : (
+        <ResponsiveContainer width='100%' height='100%'>
+          <AreaChart
+            data={payments}
+            vertical={false}
+            width={500}
+            height={400}
+            margin={{
+              top: 60,
+              right: 0,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid
+              vertical={false}
+              fillOpacity={0.16}
+              stroke='#e0e8e0'
+            />
+            <XAxis
+              dataKey='month'
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tick={{ stroke: '#9B9EAC' }}
+            />
+            <Tooltip content={CustomTooltip} />
+            <Area
+              type='monotone'
+              dataKey='paid'
+              stroke='#094067'
+              strokeWidth={2}
+              fill='#d8eefe'
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 }

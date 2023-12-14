@@ -13,7 +13,7 @@ function NavBar() {
   };
 
   return (
-    <header className='navbar z-10 bg-base-100 pl-4 pr-8 shadow'>
+    <header className='navbar sticky top-0 z-30 w-full bg-base-100 pl-4 pr-8 shadow'>
       <div className='flex-1'>
         <Link className='btn btn-ghost text-xl hover:bg-neutral hover:text-secondary'>
           <img src='/condominium.svg' alt='' className='h-8' />
@@ -25,14 +25,16 @@ function NavBar() {
           <div
             tabIndex={0}
             role='button'
-            className='btn btn-circle btn-ghost hover:bg-neutral'>
+            className='btn btn-circle btn-ghost hover:bg-neutral'
+          >
             <div className='indicator'>
               <svg
                 width='25'
                 height='25'
                 viewBox='0 0 25 25'
                 fill='none'
-                xmlns='http://www.w3.org/2000/svg'>
+                xmlns='http://www.w3.org/2000/svg'
+              >
                 <path
                   d='M3.125 8.33331L11.3444 13.8129C12.0442 14.2794 12.9558 14.2794 13.6556 13.8129L21.875 8.33331M5.20833 19.7916H19.7917C20.9423 19.7916 21.875 18.8589 21.875 17.7083V7.29165C21.875 6.14105 20.9423 5.20831 19.7917 5.20831H5.20833C4.05774 5.20831 3.125 6.14105 3.125 7.29165V17.7083C3.125 18.8589 4.05774 19.7916 5.20833 19.7916Z'
                   stroke='#3F3F46'
@@ -66,7 +68,8 @@ function NavBar() {
               className='h-5 w-5'
               fill='none'
               viewBox='0 0 24 24'
-              stroke='currentColor'>
+              stroke='currentColor'
+            >
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -81,7 +84,8 @@ function NavBar() {
           <div
             tabIndex={0}
             role='button'
-            className='avatar btn btn-circle btn-ghost hover:bg-neutral'>
+            className='avatar btn btn-circle btn-ghost hover:bg-neutral'
+          >
             <div className='w-10 rounded-full'>
               <img
                 alt='Tailwind CSS Navbar component'
@@ -94,7 +98,8 @@ function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className='menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow'>
+            className='menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow'
+          >
             <li>
               <Link className='justify-between'>
                 Perfil
