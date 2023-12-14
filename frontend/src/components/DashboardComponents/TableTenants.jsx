@@ -79,7 +79,7 @@ function TableTenants() {
 
   const renderData = data.slice(0, 4);
   return (
-    <section className='rounded-[10px] border border-gray-200 bg-white px-6 pt-4'>
+    <section className='min-w-[350px] rounded-[10px] border border-gray-200 bg-white px-6 py-4'>
       <div className='flex flex-col'>
         <h3 className='text-base font-bold text-gray-900'>
           Pagos recién recibidos
@@ -122,7 +122,8 @@ function TableTenants() {
             width='14'
             height='14'
             viewBox='0 0 14 14'
-            fill='none'>
+            fill='none'
+          >
             <g opacity='0.5'>
               <path
                 d='M5.25 2.91671L9.33333 7.00004L5.25 11.0834'
