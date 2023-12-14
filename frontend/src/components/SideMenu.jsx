@@ -30,7 +30,7 @@ export const SideMenu = () => {
 
   return (
     <div className='fixed flex  min-h-full grow flex-col gap-7 p-4'>
-      {user.role == 'admin' ? <CreateUser /> : null}
+      {user?.role === 'admin' ? <CreateUser /> : null}
 
       <NavLink to={DASHBOARD_HOME} className={activeStyle}>
         <div className='w-5'>
@@ -39,7 +39,7 @@ export const SideMenu = () => {
         <div className='font-medium text-zinc-700'>Home</div>
       </NavLink>
 
-      {user.role == 'admin' ? (
+      {user?.role === 'admin' ? (
         <div>
           <div className='text-m  mb-2 uppercase text-zinc-400'>Personas</div>
           <div className='flex flex-col gap-1'>
@@ -125,7 +125,8 @@ export const SideMenu = () => {
 
         <div
           onClick={handleLogout}
-          className={`${activeStyle} flex cursor-pointer`}>
+          className={`${activeStyle} flex cursor-pointer`}
+        >
           <div className='w-5'>
             <img src={Logout} alt='Cerrar sesión' />
           </div>
