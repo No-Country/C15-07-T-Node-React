@@ -7,6 +7,7 @@ export const SERVICES = '/dashboard/services';
 export const MAINTENANCE = '/dashboard/maintenance';
 export const TENANTS = '/dashboard/tenants';
 export const AMENITIES = '/dashboard/amenities';
+export const SUGGS = '/dashboard/suggs';
 export const SETTINGS = '/dashboard/settings';
 export const PAYMENTS = '/dashboard/payments';
 export const REPORTS = '/dashboard/reports';

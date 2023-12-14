@@ -1,16 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AMENITIES, MAINTENANCE, TENANTS } from '../../router/paths';
+import { AMENITIES, MAINTENANCE, TENANTS, SUGGS } from '../../router/paths';
 import { useSearch } from '../../store/useSearch';
+import ModalComponent from '../Modal/ModalComponent';
+import useFormData from '../../store/useFortData';
 
 function HeaderBottom() {
   const location = useLocation();
   const [headerContent, setHeaderContent] = useState('');
   const { searchValue, setSearchValue } = useSearch();
 
+  const formData = useFormData((state) => state.formData);
+  const {
+    sendMaintenanceRequest,
+    sendAmenitiesRequest,
+    sendComplaintsSuggestionsRequest,
+  } = useFormData();
+
   useEffect(() => {
     const getTitleAndSubtitle = () => {
       switch (location.pathname) {
+        case SUGGS:
+          return {
+            title: 'Quejas y Sugerencias',
+            subtitle: 'Gestión de Quejas y Sugerencias',
+            action: '+ Crear observacion',
+          };
         case TENANTS:
           return {
             title: 'Inquilinos',
@@ -20,11 +35,13 @@ function HeaderBottom() {
           return {
             title: 'Solicitud de Mantenimientos',
             subtitle: 'Gestión de solicitudes para uso de mantenimientos',
+            action: '+ Solicitar Mantenimiento',
           };
         case AMENITIES:
           return {
             title: 'Solicitud de Amenidades',
             subtitle: 'Gestión de solicitudes para uso de amenidades',
+            action: '+ Solicitar Nueva Amenidad',
           };
         default:
           return {
@@ -34,9 +51,32 @@ function HeaderBottom() {
       }
     };
 
-    const { title, subtitle } = getTitleAndSubtitle();
-    setHeaderContent((prev) => ({ ...prev, title, subtitle }));
+    const { title, subtitle, action } = getTitleAndSubtitle();
+    setHeaderContent((prev) => ({ ...prev, title, subtitle, action }));
   }, [location.pathname]);
+
+  const handleSubmit = async (data) => {
+    console.log(data);
+
+    try {
+      switch (headerContent.title) {
+        case 'Solicitud de Mantenimientos':
+          await sendMaintenanceRequest(data);
+          break;
+        case 'Solicitud de Amenidades':
+          await sendAmenitiesRequest(data);
+          break;
+        case 'Quejas y Sugerencias':
+          await sendComplaintsSuggestionsRequest(data);
+          break;
+        default:
+          console.error('Tipo de solicitud desconocido:', headerContent.title);
+      }
+    } catch (error) {
+      console.error('Error al intentar enviar la solicitud:', error);
+    }
+  };
+
   return (
     <section className='w-full'>
       <div className='flex w-full justify-between'>
@@ -47,31 +87,16 @@ function HeaderBottom() {
           <h3 className='text-lg text-neutral-500'>{headerContent.subtitle}</h3>
         </div>
         <div className='flex items-center gap-3'>
-          {headerContent.title === 'Solicitud de Mantenimientos' && (
-            <button className='btn btn-primary'>
-              <svg
-                width='16'
-                height='16'
-                viewBox='0 0 16 16'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  d='M8 3.33331V12.6666'
-                  stroke='white'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-                <path
-                  d='M3.33331 8H12.6666'
-                  stroke='white'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-              Agregar un Mantenimiento
-            </button>
+          {[
+            'Solicitud de Mantenimientos',
+            'Solicitud de Amenidades',
+            'Quejas y Sugerencias',
+          ].includes(headerContent.title) && (
+            <ModalComponent
+              title={headerContent.title}
+              button={headerContent.action}
+              onSubmit={handleSubmit}
+            />
           )}
           <button className='btn btn-ghost'>
             <svg

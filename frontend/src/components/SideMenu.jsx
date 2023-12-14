@@ -8,6 +8,7 @@ import {
   PAYMENTS,
   REPORTS,
   DASHBOARD_HOME,
+  SUGGS,
   LOGIN,
 } from '../router/paths';
 import CreateUser from './User/CreateUser';
@@ -82,7 +83,7 @@ export const SideMenu = () => {
             </div>
           </NavLink>
 
-          <NavLink to='/' className={activeStyle}>
+          <NavLink to={SUGGS} className={activeStyle}>
             <div className='w-5'>
               <img src={Folder} alt='Q & S' />
             </div>
