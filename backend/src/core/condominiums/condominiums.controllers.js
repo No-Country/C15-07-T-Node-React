@@ -16,34 +16,34 @@ const createNewCondo = async (user_id, tower, room) => {
       room
     });
   } else {
-    throw new Error('Faltan description o status');
+    throw new Error('Faltan tower o room');
   }
 };
 
 const patchCondoController = async (id, newData) => {
   try {
-    const maintenanceToUpdate = await condos.findByPk(id);
-    if (!maintenanceToUpdate) {
-      throw new Error('Maintenance not found');
+    const CondoToUpdate = await condos.findByPk(id);
+    if (!CondoToUpdate) {
+      throw new Error('Condominium not found');
     }
-    await maintenanceToUpdate.update(newData);
-    return maintenanceToUpdate;
+    await CondoToUpdate.update(newData);
+    return CondoToUpdate;
   } catch (error) {
-    console.error('Error patching maintenance:', error.message);
+    console.error('Error patching Condominium:', error.message);
     throw error;
   }
 };
 
 const delCondoController = async (id) => {
   try {
-    const delMaintenance = await condos.findByPk(id);
-    if (!delMaintenance) {
-      throw new Error('Maintenance not found');
+    const delCondo = await condos.findByPk(id);
+    if (!delCondo) {
+      throw new Error('Condo not found');
     }
-    await delMaintenance.destroy();
+    await delCondo.destroy();
     return 'delete Condominium';
   } catch (error) {
-    console.error('Error no delete maintenance:', error.message);
+    console.error('Error no delete Condo:', error.message);
     throw error;
   }
 };
