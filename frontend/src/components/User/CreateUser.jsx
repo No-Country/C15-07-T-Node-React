@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import More from '../../assets/icons/More.svg';
 import { useUserStore } from '../../store/userStore';
 import { useForm } from 'react-hook-form';
@@ -10,38 +11,47 @@ export default function CreateUser() {
     reset,
   } = useForm();
 
-  const { register: registerUser } = useUserStore();
+  const userStore = useUserStore();
 
   const onSubmit = async (data) => {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+      birthday,
+      gender,
+      role,
+      urlImage,
+    } = data;
     try {
       console.log('Enviando datos al servidor:', data);
-      alert('Enviando datos al servidor: ' + JSON.stringify(data));
-
-      // Llama a la función de registro de Zustand
-      const registrationResult = await registerUser(data);
-
-      // Muestra el resultado del registro en la consola
-      console.log('Resultado del registro:', registrationResult);
-
-      // Puedes manejar el resultado del registro aquí si es necesario
-      console.log(
-        'Registro exitoso Datos del usuario:',
-        registrationResult.data,
+      await userStore.register(
+        firstName,
+        lastName,
+        email,
+        password,
+        phone,
+        birthday,
+        gender,
+        role,
+        urlImage,
       );
-      // Cierra el modal después de un registro exitoso
-      document.getElementById('my_modal_4').close();
+      alert('Usuario creado');
       reset();
-    } catch (error) {
-      // Muestra cualquier error que pueda ocurrir durante el registro
-      console.error('Error al intentar registrar usuario:', error);
       document.getElementById('my_modal_4').close();
+    } catch (error) {
+      console.error('Error during registration:', error);
+      alert('Error durante el registro: ' + error.message);
     }
   };
   return (
     <>
       <button
         className='btn btn-primary  flex w-full p-4'
-        onClick={() => document.getElementById('my_modal_4').showModal()}>
+        onClick={() => document.getElementById('my_modal_4').showModal()}
+      >
         <img src={More} alt='More' />
         Crear Nueva Cuenta
       </button>
@@ -53,13 +63,15 @@ export default function CreateUser() {
           <form
             className='mt-4 space-y-4'
             method='dialog'
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div
               className='btn btn-circle btn-ghost btn-sm absolute right-2 top-2'
               onClick={() => {
                 document.getElementById('my_modal_4').close();
                 reset();
-              }}>
+              }}
+            >
               ✕
             </div>
             <div className='flex space-x-4'>
@@ -68,11 +80,11 @@ export default function CreateUser() {
                 <input
                   type='text'
                   className={`input input-bordered font-medium ${
-                    errors.Nombre ? 'input-error' : 'input-primary'
+                    errors.firstName ? 'input-error' : 'input-primary'
                   }`}
-                  {...register('Nombre', { required: true })}
+                  {...register('firstName', { required: true })}
                 />
-                {errors.Nombre && (
+                {errors.firstName && (
                   <span className='mb-1 text-center text-sm text-error-content'>
                     El Nombre es requerido
                   </span>
@@ -83,11 +95,11 @@ export default function CreateUser() {
                 <input
                   type='text'
                   className={`input input-bordered font-medium ${
-                    errors.Apellido ? 'input-error' : 'input-primary'
+                    errors.lastName ? 'input-error' : 'input-primary'
                   }`}
-                  {...register('Apellido', { required: true })}
+                  {...register('lastName', { required: true })}
                 />
-                {errors.Apellido && (
+                {errors.lastName && (
                   <span className='mb-1 text-center text-sm text-error-content'>
                     El Apellido es requerido
                   </span>
@@ -100,9 +112,9 @@ export default function CreateUser() {
               <input
                 type='email'
                 className={`input input-bordered ${
-                  errors.Email ? 'input-error' : 'input-primary'
+                  errors.email ? 'input-error' : 'input-primary'
                 }`}
-                {...register('Email', {
+                {...register('email', {
                   required: 'El correo electrónico es obligatorio',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -111,9 +123,9 @@ export default function CreateUser() {
                   },
                 })}
               />
-              {errors.Email && (
+              {errors.email && (
                 <span className='mb-1 text-center text-sm text-error-content'>
-                  {errors.Email.message}
+                  {errors.email.message}
                 </span>
               )}
             </div>
@@ -123,9 +135,9 @@ export default function CreateUser() {
               <input
                 type='number'
                 className={`input input-bordered ${
-                  errors.NumberPhone ? 'input-error' : 'input-primary'
+                  errors.phone ? 'input-error' : 'input-primary'
                 }`}
-                {...register('NumberPhone', {
+                {...register('phone', {
                   required: 'El número de teléfono es obligatorio',
                   pattern: {
                     value: /^[0-9]{10}$/,
@@ -144,9 +156,9 @@ export default function CreateUser() {
                   },
                 })}
               />
-              {errors.NumberPhone && (
+              {errors.phone && (
                 <span className='mb-1 text-center text-sm text-error-content'>
-                  {errors.NumberPhone.message}
+                  {errors.phone.message}
                 </span>
               )}
             </div>
@@ -156,11 +168,11 @@ export default function CreateUser() {
               <input
                 type='date'
                 className={`input input-bordered ${
-                  errors.Date ? 'input-error' : 'input-primary'
+                  errors.birthday ? 'input-error' : 'input-primary'
                 }`}
-                {...register('Date', { required: true })}
+                {...register('birthday', { required: true })}
               />
-              {errors.Date && (
+              {errors.birthday && (
                 <span className='mb-1 text-center text-sm text-error-content'>
                   La Fecha de Nacimiento es requerida
                 </span>
@@ -172,9 +184,10 @@ export default function CreateUser() {
               <select
                 type='text'
                 className={`input input-bordered ${
-                  errors.UserType ? 'input-error' : 'input-primary'
+                  errors.role ? 'input-error' : 'input-primary'
                 }`}
-                {...register('UserType', { required: true })}>
+                {...register('role', { required: true })}
+              >
                 <option value=''></option>
                 <option value='usuario' className='text-neutral-950'>
                   Usuario
@@ -183,7 +196,7 @@ export default function CreateUser() {
                   Portero
                 </option>
               </select>
-              {errors.UserType && (
+              {errors.role && (
                 <span className='mb-1 text-center text-sm text-error-content'>
                   Selecciona un tipo de usuario
                 </span>
