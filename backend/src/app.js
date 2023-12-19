@@ -41,7 +41,7 @@ db.sync()
 
 app.get('/api/v1', (req, res) => {
   res.status(200).json({
-    message: 'OK!',
+    message: `Documentation available at: http://localhost:${port}/api/v1/docs`,
     users: `localhost:${port}/api/v1/users`,
     login: `localhost:${port}/api/v1/auth/login`,
     amenities: `localhost:${port}/api/v1/amenities`,
@@ -66,5 +66,8 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
+  console.log(
+    `Documentation available at http://localhost:${port}/api/v1/docs`
+  );
   console.log(`Server started on port ${port}`);
 });

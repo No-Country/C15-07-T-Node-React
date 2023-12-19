@@ -65,11 +65,28 @@ const getUserByEmail = async (email) => {
   return { ...data, password: undefined };
 };
 
+const adminCreateUser = async (data) => {
+  const newUser = await Users.create({
+    id: uuid.v4(),
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    password: hashPassword('root'),
+    phone: data.phone,
+    birthday: data.birthday,
+    gender: data.gender,
+    role: data.role,
+    urlImage: data.urlImage
+  });
+  return { ...newUser, password: undefined };
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
   deleteUser,
-  getUserByEmail
+  getUserByEmail,
+  adminCreateUser
 };
