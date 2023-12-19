@@ -125,7 +125,29 @@ router
     passport.authenticate('jwt', { session: false }),
     usersServices.deleteMyUser
   );
-
+/**
+ * @swagger
+ * /api/v1/users/me/reservations:
+ *   get:
+ *     summary: Get my own reservations
+ *     tags:
+ *       - Users
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: Successfully retrieved user
+ *         content:
+ *           application/json:
+ *             example:
+ *               id: 12345
+ *               username: example_user
+ *               email: user@example.com
+ *       '401':
+ *         description: Unauthorized - Missing or invalid JWT token
+ *       '500':
+ *         description: Internal server error
+ * */
 router
   .route('/me/reservations')
   .get(

@@ -50,7 +50,7 @@ const registerUser = (req, res) => {
         urlImage
       })
       .then((data) => {
-        res.status(201).json(data);
+        res.status(201).json(data.dataValues);
       })
       .catch((err) => {
         res.status(400).json({
@@ -114,7 +114,7 @@ const getMyUser = (req, res) => {
   usersControllers
     .getUserById(id)
     .then((data) => {
-      res.status(200).json(data);
+      res.status(200).json(data.dataValues);
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });
@@ -221,6 +221,39 @@ const deleteMyReservation = (req, res) => {
       res.status(400).json({ message: 'You cannot delete this reservation' });
     });
 };
+//? Admin - Routes Services
+const adminRegisterUser = (req, res) => {
+  const { firstName, lastName, email, phone, birthday } = req.body;
+  if (firstName && lastName && email && phone && birthday) {
+    usersControllers
+      .adminCreateUser({
+        firstName,
+        lastName,
+        email,
+        phone,
+        birthday
+      })
+      .then((data) => {
+        res.status(201).json(data.dataValues);
+      })
+      .catch((err) => {
+        res.status(400).json({
+          error: err.message
+        });
+      });
+  } else {
+    res.status(400).json({
+      message: 'Missing data',
+      fields: {
+        firstName: 'string',
+        lastName: 'string',
+        email: 'example@example.com',
+        phone: '+5212345678',
+        birthday: 'YYYY/MM/DD'
+      }
+    });
+  }
+};
 
 module.exports = {
   getAllUsers,
@@ -233,5 +266,6 @@ module.exports = {
   deleteMyUser,
   getMyReservations,
   editMyReservation,
-  deleteMyReservation
+  deleteMyReservation,
+  adminRegisterUser
 };
