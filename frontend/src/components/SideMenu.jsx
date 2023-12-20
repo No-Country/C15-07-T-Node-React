@@ -10,6 +10,7 @@ import {
   DASHBOARD_HOME,
   SUGGS,
   LOGIN,
+  DOORMANS,
 } from '../router/paths';
 import CreateUser from './User/CreateUser';
 import { useUserStore } from '../store/userStore';
@@ -51,7 +52,7 @@ export const SideMenu = () => {
               <div className='font-medium text-zinc-700'>Inquilinos</div>
             </NavLink>
 
-            <NavLink to='/' className={activeStyle}>
+            <NavLink to={DOORMANS} className={activeStyle}>
               <div className='w-5'>
                 <img src={User} alt='Porteros' />
               </div>

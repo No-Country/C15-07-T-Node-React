@@ -7,10 +7,7 @@ export const TemplateTenants = (handleEdit) => {
     {
       title: 'Nombre',
       field: 'name',
-    },
-    {
-      title: 'Fecha',
-      field: 'date',
+      template: (row) => `${row.firstName} ${row.lastName}`,
     },
     {
       title: 'Email',
@@ -18,7 +15,7 @@ export const TemplateTenants = (handleEdit) => {
     },
     {
       title: 'Telefono',
-      field: 'tel',
+      field: 'phone',
     },
     {
       title: 'Apartamento',
@@ -30,7 +27,43 @@ export const TemplateTenants = (handleEdit) => {
       template: (row) => (
         <button
           onClick={() => handleEdit(row.id)}
-          className='rounded bg-primary px-8 py-2 text-base font-normal text-white'>
+          className='rounded bg-primary px-8 py-2 text-base font-normal text-white'
+        >
+          Editar
+        </button>
+      ),
+    },
+  ];
+
+  return columns;
+};
+export const TemplateDoormans = (handleEdit) => {
+  const columns = [
+    {
+      title: 'identificador',
+      field: 'id',
+    },
+    {
+      title: 'Nombre',
+      field: 'name',
+      template: (row) => `${row.firstName} ${row.lastName}`,
+    },
+    {
+      title: 'Email',
+      field: 'email',
+    },
+    {
+      title: 'Telefono',
+      field: 'phone',
+    },
+    {
+      title: '',
+      field: 'actions1',
+      template: (row) => (
+        <button
+          onClick={() => handleEdit(row.id)}
+          className='rounded bg-primary px-8 py-2 text-base font-normal text-white'
+        >
           Editar
         </button>
       ),
@@ -60,7 +93,8 @@ export const TemplateAmenities = (handleAccept, handleChangeDate) => {
       template: (row) => (
         <button
           onClick={() => handleAccept(row.id)}
-          className='rounded bg-primary px-8 py-2 text-base font-normal text-white'>
+          className='rounded bg-primary px-8 py-2 text-base font-normal text-white'
+        >
           Aceptar
         </button>
       ),
@@ -71,7 +105,8 @@ export const TemplateAmenities = (handleAccept, handleChangeDate) => {
       template: (row) => (
         <button
           onClick={() => handleChangeDate(row.id)}
-          className='rounded bg-primary px-8 py-2 text-base font-normal text-white'>
+          className='rounded bg-primary px-8 py-2 text-base font-normal text-white'
+        >
           Cambiar Fecha
         </button>
       ),
