@@ -3,7 +3,7 @@
   "editor.formatOnSave": true,
   "prettier.requireConfig": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "conventionalCommits.scopes": ["frontend", "backend", "testing"],
   "editor.inlineSuggest.showToolbar": "onHover",

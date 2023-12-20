@@ -21,11 +21,7 @@ function HeaderBottom() {
   }
 
   // const formData = useFormData((state) => state.formData);
-  const {
-    sendMaintenanceRequest,
-    sendAmenitiesRequest,
-    sendComplaintsSuggestionsRequest,
-  } = useFormData();
+  const formDataStore = useFormData();
 
   useEffect(() => {
     const getTitleAndSubtitle = () => {
@@ -66,24 +62,21 @@ function HeaderBottom() {
   }, [location.pathname]);
 
   const handleSubmit = async (data) => {
-    console.log(data);
+    let url;
+    if (headerContent.title === 'Solicitud de Mantenimientos') {
+      url = 'https://nc-condominiums-backend.onrender.com/api/v1/maintenance';
+    } else if (headerContent.title === 'Quejas y Sugerencias') {
+      url = 'https://nc-condominiums-backend.onrender.com/api/v1/complaint';
+    }
 
     try {
-      switch (headerContent.title) {
-        case 'Solicitud de Mantenimientos':
-          await sendMaintenanceRequest(data);
-          break;
-        case 'Solicitud de Amenidades':
-          await sendAmenitiesRequest(data);
-          break;
-        case 'Quejas y Sugerencias':
-          await sendComplaintsSuggestionsRequest(data);
-          break;
-        default:
-          console.error('Tipo de solicitud desconocido:', headerContent.title);
-      }
+      const response = await formDataStore.sendRequest(url, data);
+      console.log('Datos enviados: ', data); // Imprime los datos enviados
+      console.log('Respuesta de la API: ', response); // Imprime la respuesta de la API
+      alert('Solicitud enviada con éxito');
+      document.getElementById('my_modal_3').close();
     } catch (error) {
-      console.error('Error al intentar enviar la solicitud:', error);
+      console.log('Error durante el envío de la solicitud: ', error);
     }
   };
 
