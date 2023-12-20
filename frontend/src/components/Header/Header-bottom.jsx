@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AMENITIES, MAINTENANCE, TENANTS, SUGGS } from '../../router/paths';
+import {
+  AMENITIES,
+  MAINTENANCE,
+  TENANTS,
+  SUGGS,
+  DOORMANS,
+} from '../../router/paths';
 import { useSearch } from '../../store/useSearch';
 import { useDownloadPdf } from '../../store/useDownloadPdf';
 import ModalComponent from '../Modal/ModalComponent';
@@ -40,6 +46,11 @@ function HeaderBottom() {
           return {
             title: 'Inquilinos',
             subtitle: 'Gestión de Inquilinos',
+          };
+        case DOORMANS:
+          return {
+            title: 'Porteros',
+            subtitle: 'Gestión de Porteros',
           };
         case MAINTENANCE:
           return {
