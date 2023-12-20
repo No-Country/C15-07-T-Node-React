@@ -1,6 +1,11 @@
 import { create } from 'zustand';
 import httpService from '../api/httpService';
 
+const generatePassword = () => {
+  // Genera una contraseña segura
+  return Math.random().toString(36).slice(-8);
+};
+
 export const useUserStore = create((set) => ({
   user: null,
   authToken: null,
@@ -77,46 +82,35 @@ export const useUserStore = create((set) => ({
     }
   },
 
-  register: async ({
+  register: async (
     firstName,
     lastName,
     email,
-    password,
+    password = generatePassword(),
     phone,
     birthday,
-    gender,
+    gender = null,
     role,
-    urlImage,
-  }) => {
+    urlImage = 'https://tanzolymp.com/images/default-non-user-no-photo-1-768x768.jpg',
+  ) => {
     try {
-      set(() => ({ loading: true, error: null }));
-
-      const response = await httpService.post('/api/v1/auth/register', {
-        firstName,
-        lastName,
-        email,
-        password,
-        phone,
-        birthday,
-        gender,
-        role,
-        urlImage,
-      });
-      const { data } = response;
-
-      localStorage.setItem('token', data.token);
-      set(() => ({ authToken: data.token, loading: false }));
-
-      return { status: response.status, data };
-    } catch (error) {
-      console.error(
-        'Error al intentar registrar usuario:',
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-          'Error desconocido',
+      const response = await httpService.post(
+        'https://nc-condominiums-backend.onrender.com/api/v1/auth/register',
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+          phone,
+          birthday,
+          gender,
+          role,
+          urlImage,
+        },
       );
-      set(() => ({ error: error.data.message, loading: false }));
+      set({ user: response.data });
+    } catch (error) {
+      set({ error: error.message });
     }
   },
 }));
