@@ -11,59 +11,7 @@ import {
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useUserStore } from '../../store/userStore';
-
-const data = [
-  {
-    month: 'Ene',
-    paid: 3000,
-  },
-  {
-    month: 'Feb',
-    paid: 4000,
-  },
-  {
-    month: 'Mar',
-    paid: 2500,
-  },
-  {
-    month: 'Abr',
-    paid: 3200,
-  },
-  {
-    month: 'May',
-    paid: 3000,
-  },
-  {
-    month: 'Jun',
-    paid: 3500,
-  },
-  {
-    month: 'Jul',
-    paid: 3000,
-  },
-  {
-    month: 'Ago',
-    paid: 2000,
-  },
-  {
-    month: 'Sep',
-    paid: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    month: 'Oct',
-    paid: 1890,
-  },
-  {
-    month: 'Nov',
-    paid: 2390,
-  },
-  {
-    month: 'Dic',
-    paid: 3490,
-  },
-];
+import { payments as data } from '../../../mocks/data';
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload) {
@@ -82,7 +30,7 @@ CustomTooltip.propTypes = {
 };
 
 export default function PaymentsChart() {
-  const [payments, setPayments] = useState([]);
+  const [payments, setPayments] = useState(data);
   const [activeMonths, setActiveMonths] = useState(12);
   const tableRef = useRef(null);
   const isPrinting = useDownloadPdf((state) => state.isPrinting);
@@ -216,6 +164,7 @@ export default function PaymentsChart() {
               axisLine={false}
               tickMargin={8}
               tick={{ stroke: '#9B9EAC' }}
+              interval='preserveStartEnd'
             />
             <Tooltip content={CustomTooltip} />
             <Area

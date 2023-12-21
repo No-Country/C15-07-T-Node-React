@@ -4,6 +4,7 @@ const app = express();
 const { port } = require('./config');
 const db = require('./utils/database');
 const logger = require('morgan');
+const swaggerDocs = require('./utils/swagger');
 
 const userRouter = require('./core/users/users.router');
 const authRouter = require('./core/auth/auth.router');
@@ -19,6 +20,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
+
+initModels();
 
 db.authenticate()
   .then(() => {
@@ -38,7 +41,7 @@ db.sync()
 
 app.get('/api/v1', (req, res) => {
   res.status(200).json({
-    message: 'OK!',
+    message: `Documentation available at: http://localhost:${port}/api/v1/docs`,
     users: `localhost:${port}/api/v1/users`,
     login: `localhost:${port}/api/v1/auth/login`,
     amenities: `localhost:${port}/api/v1/amenities`,
@@ -49,6 +52,7 @@ app.get('/api/v1', (req, res) => {
   });
 });
 
+app.use('/api/v1/docs', swaggerDocs.serve, swaggerDocs.setup);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/amenities', amenitieRouter);
@@ -62,5 +66,8 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, '0.0.0.0', () => {
+  console.log(
+    `Documentation available at http://localhost:${port}/api/v1/docs`
+  );
   console.log(`Server started on port ${port}`);
 });

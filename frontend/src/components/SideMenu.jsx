@@ -10,6 +10,7 @@ import {
   DASHBOARD_HOME,
   SUGGS,
   LOGIN,
+  DOORMANS,
 } from '../router/paths';
 import CreateUser from './User/CreateUser';
 import { useUserStore } from '../store/userStore';
@@ -30,7 +31,7 @@ export const SideMenu = () => {
     }`;
 
   return (
-    <div className='fixed flex  min-h-full grow flex-col gap-7 p-4'>
+    <div className='sticky bottom-5 top-5 flex  min-h-full grow flex-col gap-7 p-4'>
       {user?.role === 'admin' ? <CreateUser /> : null}
 
       <NavLink to={DASHBOARD_HOME} className={activeStyle}>
@@ -51,7 +52,7 @@ export const SideMenu = () => {
               <div className='font-medium text-zinc-700'>Inquilinos</div>
             </NavLink>
 
-            <NavLink to='/' className={activeStyle}>
+            <NavLink to={DOORMANS} className={activeStyle}>
               <div className='w-5'>
                 <img src={User} alt='Porteros' />
               </div>
@@ -116,7 +117,7 @@ export const SideMenu = () => {
         </div>
       </div>
 
-      <div className='mt-20 flex grow flex-col gap-1'>
+      <div className='mt-auto flex grow flex-col gap-1'>
         <NavLink to='/' className={activeStyle}>
           <div className='w-5'>
             <img src={Settings} alt='Configuraciones' />

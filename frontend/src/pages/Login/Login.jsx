@@ -21,9 +21,14 @@ function Login() {
   const onSubmit = async (data) => {
     const res = await login(data);
 
-    if (res.status === 200) {
+    if (res?.status === 200) {
       const info = await getMyInfo();
-      if (info?.status === 200) navigate('/dashboard/home');
+      console.log(info);
+      if (info?.status === 200) {
+        info?.data?.role === 'admin'
+          ? navigate('/dashboard')
+          : navigate('/user');
+      }
     }
   };
 
@@ -41,7 +46,8 @@ function Login() {
       </article>
       <form
         className='mx-auto flex h-full w-full flex-col justify-between bg-[base-100] px-4 py-10 lg:w-1/2 lg:p-28'
-        onSubmit={handleSubmit(onSubmit)}>
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <h1 className='mx-auto mb-2 flex items-center gap-2 text-xl font-semibold'>
           <img src='condominium.svg' alt='Condominium' className='h-8' />
           Condominiums
@@ -63,6 +69,7 @@ function Login() {
             ) : null}
             <input
               type='email'
+              disabled={loading}
               placeholder='Correo'
               className={`input input-bordered ${
                 errors.email ? 'input-error' : 'input-primary'
@@ -79,6 +86,7 @@ function Login() {
           <div className='flex w-full flex-col'>
             <input
               type='password'
+              disabled={loading}
               placeholder='Contraseña'
               className={`input input-bordered ${
                 errors.password ? 'input-error' : 'input-primary'
@@ -112,7 +120,8 @@ function Login() {
           <div className='my-4 flex w-full flex-col'>
             <button
               className='btn btn-primary my-2 flex w-full p-4'
-              disabled={loading}>
+              disabled={loading}
+            >
               {loading ? (
                 <span className='loading loading-spinner loading-sm'></span>
               ) : (
@@ -132,7 +141,8 @@ function Login() {
             ¿No tienes cuenta?{' '}
             <Link
               className='cursor-pointer font-semibold underline underline-offset-2 hover:text-accent'
-              to='/contact'>
+              to='/contact'
+            >
               Contactar con la administración
             </Link>
           </p>

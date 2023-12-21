@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserStore } from '../../store/userStore';
-import { LOGIN } from '../../router/paths';
+import { LOGIN, USER_PROFILE } from '../../router/paths';
 
 function NavBar() {
   const user = useUserStore((state) => state.user);
@@ -101,7 +101,7 @@ function NavBar() {
             className='menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow'
           >
             <li>
-              <Link className='justify-between'>
+              <Link to={USER_PROFILE} className='justify-between'>
                 Perfil
                 <span className='badge badge-primary'>Nuevo</span>
               </Link>

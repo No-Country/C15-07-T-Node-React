@@ -49,9 +49,9 @@ const createAmenitie = (req, res) => {
 
 const patchAmenitie = (req, res) => {
   const id = req.params.amenitie_id;
-  const { amenitieName, capacity } = req.body;
+  const { amenitieName, capacity, amenitieImage } = req.body;
   amenitiesControllers
-    .updateAmenitie(id, { amenitieName, capacity })
+    .updateAmenitie(id, { amenitieName, capacity, amenitieImage })
     .then((data) => {
       if (data[0]) {
         res.status(200).json({ message: 'Amenitie edited correctly' });
@@ -60,7 +60,8 @@ const patchAmenitie = (req, res) => {
           message: 'Invalid ID, or wrong fields',
           fields: {
             amenitieName: 'string',
-            capacity: 'integer'
+            capacity: 'integer',
+            amenitieImage: 'string'
           }
         });
       }
@@ -103,7 +104,8 @@ const postAmenitieToUser = (req, res) => {
     res.status(400).json({
       message: 'Missing data',
       fields: {
-        dateReservation: 'YYYY-MM-DDT12:00:00Z'
+        amenitieId: 'integer',
+        dateReservation: 'YYYY-MM-DD'
       }
     });
   }

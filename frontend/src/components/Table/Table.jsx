@@ -23,7 +23,7 @@ function Table({ columns = [], data = [] }) {
   };
 
   return (
-    <div className='overflow-x-auto' ref={tableRef}>
+    <div className='w-full overflow-x-auto' ref={tableRef}>
       <style>{getPageMargins()}</style>
       <table className='min-w-full bg-white'>
         <thead>

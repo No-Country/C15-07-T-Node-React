@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
+import DatePicker from 'react-multi-date-picker';
 
-// eslint-disable-next-line react/prop-types
 export default function ModalComponent({ button, title, onSubmit }) {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState('');
@@ -19,7 +20,8 @@ export default function ModalComponent({ button, title, onSubmit }) {
     <>
       <button
         className='btn btn-primary  flex  p-4'
-        onClick={() => document.getElementById('my_modal_3').showModal()}>
+        onClick={() => document.getElementById('my_modal_3').showModal()}
+      >
         {button}
       </button>
       <dialog id='my_modal_3' className='modal '>
@@ -28,14 +30,16 @@ export default function ModalComponent({ button, title, onSubmit }) {
           <form
             className='mt-4 space-y-4'
             method='dialog'
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <button
               className='btn btn-circle btn-ghost btn-sm absolute right-2 top-2'
               onClick={() => {
                 document.getElementById('my_modal_3').close();
                 reset();
                 handleInputChange({ target: { value: '' } });
-              }}>
+              }}
+            >
               ✕
             </button>
             <div className='flex-col'>
@@ -54,17 +58,27 @@ export default function ModalComponent({ button, title, onSubmit }) {
                   <span
                     className={`label-text-alt mt-[-10px] text-lg font-semibold ${
                       count === 30 ? 'text-red-500' : 'text-gray-500'
-                    }`}>
+                    }`}
+                  >
                     {count} / 30
                   </span>
                 </div>
+              </div>
+              <div className=''>
+                <label className='font-bold'>Fecha</label>
+                <DatePicker
+                  className='input input-bordered input-lg max-h-12 w-full'
+                  format='DD/MM/YYYY'
+                  value={new Date()}
+                />
               </div>
               <div className=' '>
                 <label className='font-bold'>Descripcion</label>
                 <textarea
                   {...register('description', { required: true })}
                   placeholder='Bio'
-                  className='textarea textarea-bordered  textarea-lg  max-h-full w-full resize-none'></textarea>
+                  className='textarea textarea-bordered  textarea-lg  max-h-full w-full resize-none'
+                ></textarea>
               </div>
               <div className='flex flex-col'>
                 <button
@@ -72,7 +86,8 @@ export default function ModalComponent({ button, title, onSubmit }) {
                   className='btn btn-primary mt-4'
                   onClick={() => {
                     document.getElementById('my_modal_3').close();
-                  }}>
+                  }}
+                >
                   Enviar Solicitud
                 </button>
               </div>
@@ -83,3 +98,9 @@ export default function ModalComponent({ button, title, onSubmit }) {
     </>
   );
 }
+
+ModalComponent.propTypes = {
+  button: PropTypes.string,
+  title: PropTypes.string,
+  onSubmit: PropTypes.func,
+};

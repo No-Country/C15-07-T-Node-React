@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import {
   Login,
-  Services,
   Contact,
   NotFound,
   AdminDashboard,
@@ -9,6 +8,7 @@ import {
   Amenities,
   Maintenance,
   Payments,
+  Doormans,
 } from '../pages';
 
 import PrivateRoute from './PrivateRoute';
@@ -19,14 +19,17 @@ import {
   HOME,
   LOGIN,
   MAINTENANCE,
-  SERVICES,
   TENANTS,
   PAYMENTS,
   DASHBOARD_HOME,
   SUGGS,
+  DOORMANS,
+  USER,
+  USER_PROFILE,
 } from '../router/paths';
 import Dashboard from '../pages/AdminDashboard/Dashboard';
 import Suggs from '../pages/Suggs/Suggs';
+import UserProfile from '../pages/UserProfile/UserProfile';
 
 function AppContent() {
   return (
@@ -38,12 +41,16 @@ function AppContent() {
         <Route path={DASHBOARD} element={<AdminDashboard />}>
           <Route index element={<Navigate to={DASHBOARD_HOME} />} />
           <Route path={DASHBOARD_HOME} element={<Dashboard />} />
-          <Route path={SERVICES} element={<Services />} />
           <Route path={TENANTS} element={<Tenants />} />
           <Route path={AMENITIES} element={<Amenities />} />
           <Route path={MAINTENANCE} element={<Maintenance />} />
           <Route path={PAYMENTS} element={<Payments />} />
+          <Route path={DOORMANS} element={<Doormans />} />
           <Route path={SUGGS} element={<Suggs />} />
+        </Route>
+        <Route path={USER} element={<UserProfile />}>
+          <Route index element={<Navigate to={USER_PROFILE} />} />
+          <Route path={USER_PROFILE} element={<Amenities />} />
         </Route>
       </Route>
       <Route path='*' element={<NotFound />} />
