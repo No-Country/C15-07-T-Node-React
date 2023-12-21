@@ -25,11 +25,11 @@ function Tenants() {
               r.lastName.toLowerCase().includes(searchValue.toLowerCase()) ||
               r.email.toLowerCase().includes(searchValue.toLowerCase()) ||
               r.phone.toLowerCase().includes(searchValue.toLowerCase())) &&
-            r.role === 'normal',
+            r.role === 'inquilino',
         ),
       );
     } else {
-      setFilteredData(users?.filter((r) => r.role === 'normal'));
+      setFilteredData(users?.filter((r) => r.role === 'inquilino'));
     }
   }, [searchValue, users]);
 
