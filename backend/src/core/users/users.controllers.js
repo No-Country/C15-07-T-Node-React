@@ -62,7 +62,7 @@ const getUserByEmail = async (email) => {
       status: 'active'
     }
   });
-  return { ...data, password: undefined };
+  return data;
 };
 
 const adminCreateUser = async (data) => {
