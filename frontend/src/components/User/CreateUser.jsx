@@ -140,7 +140,7 @@ export default function CreateUser() {
                 {...register('phone', {
                   required: 'El número de teléfono es obligatorio',
                   pattern: {
-                    value: /^[0-9]{10}$/,
+                    value: /^[0-9]{9-10}$/,
                     message:
                       'Ingresa un número de teléfono válido (10 dígitos)',
                   },

@@ -13,7 +13,14 @@ const TableTenants = lazy(
 
 const Dashboard = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className='flex h-full grow items-center justify-center'>
+          Cargando
+          <span className='loading loading-spinner loading-md ml-4 pt-24'></span>
+        </div>
+      }
+    >
       <section className='flex grow flex-col gap-5'>
         <div className='flex h-full w-full flex-col gap-4 xl:flex-row'>
           <PaymentsChart />

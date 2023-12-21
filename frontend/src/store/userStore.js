@@ -53,6 +53,7 @@ export const useUserStore = create((set) => ({
     } catch (error) {
       console.error('Error al intentar iniciar sesión:', error);
       set(() => ({ error: error.data.message, loading: false }));
+      return { status: error.status, data: error.data };
     }
   },
 
