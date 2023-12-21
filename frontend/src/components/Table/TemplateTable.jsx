@@ -3,6 +3,14 @@ export const TemplateTenants = (handleEdit) => {
     {
       title: 'identificador',
       field: 'id',
+      template: (row) => (
+        <span
+          className='tooltip tooltip-right cursor-pointer'
+          data-tip={row.id}
+        >
+          {row.id.length > 5 ? `${row.id.substring(0, 4)}...` : row.id}
+        </span>
+      ),
     },
     {
       title: 'Nombre',
@@ -42,6 +50,14 @@ export const TemplateDoormans = (handleEdit) => {
     {
       title: 'identificador',
       field: 'id',
+      template: (row) => (
+        <span
+          className='tooltip tooltip-right cursor-pointer'
+          data-tip={row.id}
+        >
+          {row.id.length > 5 ? `${row.id.substring(0, 4)}...` : row.id}
+        </span>
+      ),
     },
     {
       title: 'Nombre',
