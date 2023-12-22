@@ -17,11 +17,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
+    "react-hot-toast": "^2.4.1",
     "react-multi-date-picker": "^4.4.1",
     "react-router-dom": "^6.20.0",
     "react-to-print": "^2.14.15",
     "recharts": "^2.10.3",
     "zustand": "^4.4.7"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.5",
