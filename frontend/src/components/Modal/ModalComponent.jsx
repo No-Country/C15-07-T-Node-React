@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import DatePicker from 'react-multi-date-picker';
 
 export default function ModalComponent({ button, title, onSubmit }) {
   const [count, setCount] = useState(0);
@@ -19,13 +18,13 @@ export default function ModalComponent({ button, title, onSubmit }) {
   return (
     <>
       <button
-        className='btn btn-primary  flex  p-4'
+        className='btn btn-primary flex p-4'
         onClick={() => document.getElementById('my_modal_3').showModal()}
       >
         {button}
       </button>
-      <dialog id='my_modal_3' className='modal '>
-        <div className='modal-box flex w-96 flex-col items-center overflow-auto overflow-x-hidden p-2'>
+      <dialog id='my_modal_3' className='modal p-4'>
+        <div className='modal-box flex w-96 flex-col items-center overflow-auto overflow-x-hidden p-4'>
           <h3 className='text-xl font-bold'>{title}</h3>
           <form
             className='mt-4 space-y-4'
@@ -64,14 +63,7 @@ export default function ModalComponent({ button, title, onSubmit }) {
                   </span>
                 </div>
               </div>
-              <div className=''>
-                <label className='font-bold'>Fecha</label>
-                <DatePicker
-                  className='input input-bordered input-lg max-h-12 w-full'
-                  format='DD/MM/YYYY'
-                  value={new Date()}
-                />
-              </div>
+
               <div className=' '>
                 <label className='font-bold'>Descripcion</label>
                 <textarea
