@@ -1,10 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import notFound from '../../assets/notfound.svg';
+import NavBar from '../../components/NavBar/NavBar';
 
 function NotFound() {
   return (
     <>
+      <NavBar />
       <div className='flex grow items-center justify-center bg-[#f8f8f8]'>
         <div className='text-center'>
           <div className='flex items-center justify-center'>
