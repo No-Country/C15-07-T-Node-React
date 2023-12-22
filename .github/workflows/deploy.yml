@@ -60,6 +60,8 @@ jobs:
 
       - name: Build Frontend
         run: npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
       # Pasos para el deploy en Netlify
       - name: Install Netlify
