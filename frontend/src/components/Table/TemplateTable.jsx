@@ -27,7 +27,8 @@ export const TemplateTenants = (handleEdit) => {
     },
     {
       title: 'Apartamento',
-      field: 'apartment',
+      field: 'apartamento',
+      template: (row, rIndex) => rIndex + 1,
     },
     {
       title: '',
