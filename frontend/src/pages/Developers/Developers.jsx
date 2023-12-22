@@ -43,7 +43,7 @@ export default function Developers() {
           <h3 className='mb-4'>Frontend</h3>
           <div className='m-2 flex gap-8'>
             <div className='flex flex-col items-center'>
-              <div className='avatar shadow'>
+              <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
                   <img src='https://avatars.githubusercontent.com/u/12972468?v=4' />
                 </div>
@@ -61,7 +61,7 @@ export default function Developers() {
               </div>
             </div>
             <div className='flex flex-col items-center '>
-              <div className='avatar shadow'>
+              <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
                   <img src='https://avatars.githubusercontent.com/u/95093795?v=4' />
                 </div>
@@ -79,7 +79,7 @@ export default function Developers() {
               </div>
             </div>
             <div className='flex flex-col items-center'>
-              <div className='avatar shadow'>
+              <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
                   <img src='https://avatars.githubusercontent.com/u/87555292?v=4' />
                 </div>
@@ -97,7 +97,7 @@ export default function Developers() {
               </div>
             </div>
             <div className='flex flex-col items-center'>
-              <div className='avatar shadow'>
+              <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
                   <img src='https://avatars.githubusercontent.com/u/86517179?v=4' />
                 </div>
@@ -120,7 +120,7 @@ export default function Developers() {
           <h3 className='mb-4'>Backend</h3>
           <div className='m-2 flex gap-8'>
             <div className='flex flex-col items-center'>
-              <div className='avatar shadow'>
+              <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
                   <img src='https://avatars.githubusercontent.com/u/100742080?v=4' />
                 </div>
@@ -138,7 +138,7 @@ export default function Developers() {
               </div>
             </div>
             <div className='flex flex-col items-center '>
-              <div className='avatar shadow'>
+              <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
                   <img src='https://avatars.githubusercontent.com/u/93558180?v=4' />
                 </div>
@@ -156,7 +156,7 @@ export default function Developers() {
               </div>
             </div>
             <div className='flex flex-col items-center opacity-20'>
-              <div className='avatar shadow'>
+              <div className='avatar shadow-md'>
                 <div className='w-24 rounded grayscale-0'>
                   <img src='https://avatars.githubusercontent.com/u/115433143?v=4' />
                 </div>
@@ -180,7 +180,7 @@ export default function Developers() {
             <h3 className='mb-4'>Testers - QA</h3>
             <div className='m-2 flex gap-8'>
               <div className='flex flex-col items-center'>
-                <div className='avatar shadow'>
+                <div className='avatar shadow-md'>
                   <div className='w-24 rounded'>
                     <img src='https://avatars.githubusercontent.com/u/86728610?v=4' />
                   </div>
@@ -221,18 +221,18 @@ export default function Developers() {
             <h3 className='mb-4'>Team Leader</h3>
             <div className='m-2 flex gap-8'>
               <div className='flex flex-col items-center'>
-                <div className='avatar shadow'>
+                <div className='avatar'>
                   <div className='w-24 rounded'>
-                    <img src='https://avatars.githubusercontent.com/u/86728610?v=4' />
+                    <img src='https://cdn.discordapp.com/avatars/936827224567480322/3d42394f9787298190cb4bc4ab9c4a6c.webp?size=160' />
                   </div>
                 </div>
                 <div className='m-2 flex flex-col items-center justify-center'>
                   <h4>Melanie</h4>
                   <p className='flex gap-2'>
-                    <a href='https://github.com/AgustinaGmz'>
+                    <a href=''>
                       <ion-icon size='large' name='logo-github'></ion-icon>
                     </a>
-                    <a href='https://www.linkedin.com/in/agustina-gim%C3%A9nez-9622221b2/'>
+                    <a href=''>
                       <ion-icon size='large' name='logo-linkedin'></ion-icon>
                     </a>
                   </p>
@@ -241,7 +241,6 @@ export default function Developers() {
             </div>
           </div>
         </div>
-        {/* Debajo viene un parrafo que pone hecho con amor en NoCountry */}
         <div className='m-12 flex flex-col items-center justify-center'>
           <p className='text-center'>
             Hecho con{' '}
