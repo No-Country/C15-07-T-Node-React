@@ -22,3 +22,4 @@ export const USER_PAYMENTS = '/user/payments';
 export const USER_REPORTS = '/user/reports';
 export const USER_PROFILE = '/user/profile';
 export const NOT_FOUND = '/404';
+export const DEVELOPERS = '/developers';

@@ -26,15 +26,18 @@ import {
   DOORMANS,
   USER,
   USER_PROFILE,
+  DEVELOPERS,
 } from '../router/paths';
 import Dashboard from '../pages/AdminDashboard/Dashboard';
 import Suggs from '../pages/Suggs/Suggs';
 import UserProfile from '../pages/UserProfile/UserProfile';
+import Developers from '../pages/Developers/Developers';
+import Home from '../pages/Home/Home';
 
 function AppContent() {
   return (
     <Routes>
-      <Route path={HOME} element={<Navigate to={'/login'} />} />
+      <Route path={HOME} element={<Home />} />
       <Route path={LOGIN} element={<Login />} />
       <Route path={CONTACT} element={<Contact />} />
       <Route element={<PrivateRoute />}>
@@ -53,6 +56,7 @@ function AppContent() {
           <Route path={USER_PROFILE} element={<Amenities />} />
         </Route>
       </Route>
+      <Route path={DEVELOPERS} element={<Developers />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   );
