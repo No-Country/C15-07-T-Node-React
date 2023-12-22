@@ -41,7 +41,7 @@ function Table({ columns = [], data = [] }) {
         <tbody>
           {data?.length === 0 && (
             <tr>
-              <td className='p-2'>No existe el usuario buscado</td>
+              <td>No existe el usuario buscado</td>
             </tr>
           )}
           {data?.length > 0 &&
@@ -52,7 +52,9 @@ function Table({ columns = [], data = [] }) {
                     key={`table-row-column-${row.id || rIndex}-${column.field}`}
                     className='border-b-2 border-neutral-100 px-2  py-2 text-base font-normal text-neutral-800'
                   >
-                    {column.template ? column.template(row) : row[column.field]}
+                    {column.template
+                      ? column.template(row, rIndex)
+                      : row[column.field]}
                   </td>
                 ))}
               </tr>
