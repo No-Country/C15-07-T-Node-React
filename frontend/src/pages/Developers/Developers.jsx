@@ -182,7 +182,7 @@ export default function Developers() {
               <div className='flex flex-col items-center'>
                 <div className='avatar shadow-md'>
                   <div className='w-24 rounded'>
-                    <img src='https://avatars.githubusercontent.com/u/86728610?v=4' />
+                    <img src='https://cdn.discordapp.com/attachments/1181343560461725796/1187821328309432412/FB_IMG_1703267480673.jpg?ex=659847d1&is=6585d2d1&hm=ee12877d7213788e8a6522fd141fa22a73c8900fa51a660480b9e6f596c75cbe&' />
                   </div>
                 </div>
                 <div className='m-2 flex flex-col items-center justify-center'>
