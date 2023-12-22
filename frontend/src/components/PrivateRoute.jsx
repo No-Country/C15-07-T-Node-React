@@ -8,6 +8,7 @@ const PrivateRoute = () => {
   const authToken = useUserStore((state) => state.authToken);
   const setAuthToken = useUserStore((state) => state.setAuthToken);
   const getMyInfo = useUserStore((state) => state.getMyInfo);
+  const loading = useUserStore((state) => state.loading);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,14 +22,29 @@ const PrivateRoute = () => {
     }
     async function restoreSession() {
       setAuthToken();
-      await getMyInfo();
+      try {
+        const info = await getMyInfo();
+        if (info?.status !== 200) {
+          localStorage.removeItem('token');
+          navigate(LOGIN);
+        }
+      } catch (error) {
+        localStorage.removeItem('token');
+        navigate(LOGIN);
+      }
     }
   }, [setAuthToken, authToken, getMyInfo, navigate]);
 
   return (
     <>
       <NavBar />
-      <Outlet />
+      {loading ? (
+        <div className='flex h-full w-full grow items-center justify-center'>
+          <span className='loading loading-spinner loading-lg text-primary'></span>
+        </div>
+      ) : (
+        <Outlet />
+      )}
     </>
   );
 };

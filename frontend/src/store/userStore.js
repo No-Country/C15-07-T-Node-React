@@ -69,6 +69,7 @@ export const useUserStore = create((set) => ({
       return { status: response.status, data };
     } catch (error) {
       console.error('Error al intentar obtener el usuario:', error);
+      localStorage.removeItem('token');
       set(() => ({ error: error.data.message, loading: false }));
     }
   },
@@ -95,21 +96,19 @@ export const useUserStore = create((set) => ({
     urlImage = 'https://tanzolymp.com/images/default-non-user-no-photo-1-768x768.jpg',
   ) => {
     try {
-      const response = await httpService.post(
-        'https://nc-condominiums-backend.onrender.com/api/v1/auth/register',
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-          phone,
-          birthday,
-          gender,
-          role,
-          urlImage,
-        },
-      );
-      set({ user: response.data });
+      const response = await httpService.post('/api/v1/auth/register', {
+        firstName,
+        lastName,
+        email,
+        password,
+        phone,
+        birthday,
+        gender,
+        role,
+        urlImage,
+      });
+      const { data } = response;
+      return { status: response.status, data };
     } catch (error) {
       set({ error: error.message });
     }

@@ -41,7 +41,7 @@ function Table({ columns = [], data = [] }) {
         <tbody>
           {data?.length === 0 && (
             <tr>
-              <td>No existe el usuario buscado</td>
+              <td className='p-2'>No existe el usuario buscado</td>
             </tr>
           )}
           {data?.length > 0 &&

@@ -1,4 +1,5 @@
 import { useUserStore } from '../../store/userStore';
+import capitalize from '../../utils/capitalize';
 
 function HeaderTop() {
   const user = useUserStore((state) => state.user);
@@ -39,9 +40,9 @@ function HeaderTop() {
       <div className='flex items-center justify-between px-1 py-7'>
         <h4 className='text-base font-normal text-gray-500'>
           <span className='font-bold text-gray-900'>
-            Hola {user?.firstName} -
+            Hola {user && capitalize(user?.firstName)} -
           </span>{' '}
-          esto es lo que está pasando con tu condominio hoy
+          Esto es lo que está pasando con tu condominio hoy.
         </h4>
         <p className='text-base font-semibold '>{fechaFormateada}</p>
       </div>
