@@ -24,3 +24,18 @@ p {
 .input-error {
   @apply btn-error text-error placeholder-error-content;
 }
+
+/* Esconder el Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Para navegadores webkit como Chrome y Safari */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+  scrollbar-width: none; /* Para Firefox */
+}
+
+/* Estilos para el Calendario */
+.rmdp-day:hover span {
+  background-color: #f5f5f5;
+}

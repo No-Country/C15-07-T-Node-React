@@ -37,7 +37,7 @@ export default function CreateUser() {
         role,
         urlImage,
       );
-      alert('Usuario creado');
+
       reset();
       document.getElementById('my_modal_4').close();
     } catch (error) {
@@ -139,19 +139,10 @@ export default function CreateUser() {
                 {...register('phone', {
                   required: 'El número de teléfono es obligatorio',
                   pattern: {
-                    value: /^[0-9]{9-10}$/,
+                    value:
+                      /^\+?\d{1,3}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
                     message:
                       'Ingresa un número de teléfono válido (10 dígitos)',
-                  },
-                  maxLength: {
-                    value: 10,
-                    message:
-                      'El número de teléfono no debe exceder los 10 dígitos',
-                  },
-                  minLength: {
-                    value: 10,
-                    message:
-                      'El número de teléfono debe tener al menos 10 dígitos',
                   },
                 })}
               />
@@ -188,8 +179,11 @@ export default function CreateUser() {
                 {...register('role', { required: true })}
               >
                 <option value=''></option>
-                <option value='usuario' className='text-neutral-950'>
-                  Usuario
+                <option value='admin' className='text-neutral-950'>
+                  Administrador
+                </option>
+                <option value='inquilino' className='text-neutral-950'>
+                  Inquilino
                 </option>
                 <option value='portero' className='text-neutral-950'>
                   Portero

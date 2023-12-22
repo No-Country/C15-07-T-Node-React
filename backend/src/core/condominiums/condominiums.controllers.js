@@ -1,17 +1,35 @@
 const condos = require('../../models/condominiums.models');
 const uuid = require('uuid');
+const Users = require('../../models/users.model');
 //const db = require('../utils/database')
 
 const getAllCondoController = async () => {
-  const data = await condos.findAll();
+  const data = await condos.findAll({
+    attributes: {
+      exclude: ['userId', 'createdAt', 'updatedAt']
+    },
+    include: [
+      {
+        model: Users,
+        attributes: [
+          'id',
+          'firstName',
+          'lastName',
+          'birthday',
+          'email',
+          'phone'
+        ]
+      }
+    ]
+  });
   return data;
 };
 
-const createNewCondo = async (user_id, tower, room) => {
+const createNewCondo = async (userId, tower, room) => {
   if (tower && room) {
     return await condos.create({
       id: uuid.v4(),
-      user_id,
+      userId,
       tower,
       room
     });
