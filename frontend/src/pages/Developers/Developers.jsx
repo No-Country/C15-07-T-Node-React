@@ -40,8 +40,26 @@ export default function Developers() {
         </div>
         <h1 className='m-8 text-4xl font-bold'>Desarrolladores</h1>
         <div className='flex w-full max-w-6xl flex-col items-center justify-center rounded-md border bg-white p-4'>
-          <h3 className='mb-4'>Frontend</h3>
+          <h3 className='mb-4 font-bold'>Frontend</h3>
           <div className='m-2 flex gap-8'>
+            <div className='flex flex-col items-center'>
+              <div className='avatar shadow-md'>
+                <div className='w-24 rounded'>
+                  <img src='https://avatars.githubusercontent.com/u/86517179?v=4' />
+                </div>
+              </div>
+              <div className='m-2 flex flex-col items-center justify-center'>
+                <h4>Agustín</h4>
+                <p className='flex gap-2'>
+                  <a href='https://github.com/Tiin24'>
+                    <ion-icon size='large' name='logo-github'></ion-icon>
+                  </a>
+                  <a href='https://www.linkedin.com/in/isaias-romero/'>
+                    <ion-icon size='large' name='logo-linkedin'></ion-icon>
+                  </a>
+                </p>
+              </div>
+            </div>
             <div className='flex flex-col items-center'>
               <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
@@ -55,24 +73,6 @@ export default function Developers() {
                     <ion-icon size='large' name='logo-github'></ion-icon>
                   </a>
                   <a href='https://linkedin.com/in/agomezjuan'>
-                    <ion-icon size='large' name='logo-linkedin'></ion-icon>
-                  </a>
-                </p>
-              </div>
-            </div>
-            <div className='flex flex-col items-center '>
-              <div className='avatar shadow-md'>
-                <div className='w-24 rounded'>
-                  <img src='https://avatars.githubusercontent.com/u/95093795?v=4' />
-                </div>
-              </div>
-              <div className='m-2 flex flex-col items-center justify-center'>
-                <h4>Fabian</h4>
-                <p className='flex gap-2'>
-                  <a href='https://github.com/fabianeromano'>
-                    <ion-icon size='large' name='logo-github'></ion-icon>
-                  </a>
-                  <a href='https://www.linkedin.com/in/fabian-edgardo-romano/'>
                     <ion-icon size='large' name='logo-linkedin'></ion-icon>
                   </a>
                 </p>
@@ -96,19 +96,19 @@ export default function Developers() {
                 </p>
               </div>
             </div>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center '>
               <div className='avatar shadow-md'>
                 <div className='w-24 rounded'>
-                  <img src='https://avatars.githubusercontent.com/u/86517179?v=4' />
+                  <img src='https://avatars.githubusercontent.com/u/95093795?v=4' />
                 </div>
               </div>
               <div className='m-2 flex flex-col items-center justify-center'>
-                <h4>Agustín</h4>
+                <h4>Fabian</h4>
                 <p className='flex gap-2'>
-                  <a href='https://github.com/Tiin24'>
+                  <a href='https://github.com/fabianeromano'>
                     <ion-icon size='large' name='logo-github'></ion-icon>
                   </a>
-                  <a href='https://www.linkedin.com/in/isaias-romero/'>
+                  <a href='https://www.linkedin.com/in/fabian-edgardo-romano/'>
                     <ion-icon size='large' name='logo-linkedin'></ion-icon>
                   </a>
                 </p>
@@ -117,7 +117,7 @@ export default function Developers() {
           </div>
         </div>
         <div className='flex w-full max-w-6xl flex-col items-center justify-center rounded-md border bg-white p-4'>
-          <h3 className='mb-4'>Backend</h3>
+          <h3 className='mb-4 font-bold'>Backend</h3>
           <div className='m-2 flex gap-8'>
             <div className='flex flex-col items-center'>
               <div className='avatar shadow-md'>
@@ -177,7 +177,7 @@ export default function Developers() {
         </div>
         <div className='flex w-full max-w-6xl items-center justify-center gap-6'>
           <div className='flex w-full flex-col items-center justify-center rounded-md border bg-white p-4'>
-            <h3 className='mb-4'>Testers - QA</h3>
+            <h3 className='mb-4 font-bold'>Testers - QA</h3>
             <div className='m-2 flex gap-8'>
               <div className='flex flex-col items-center'>
                 <div className='avatar shadow-md'>
@@ -218,7 +218,7 @@ export default function Developers() {
             </div>
           </div>
           <div className='flex w-full flex-col items-center justify-center rounded-md border bg-white p-4'>
-            <h3 className='mb-4'>Team Leader</h3>
+            <h3 className='mb-4 font-bold'>Team Leader</h3>
             <div className='m-2 flex gap-8'>
               <div className='flex flex-col items-center'>
                 <div className='avatar'>
