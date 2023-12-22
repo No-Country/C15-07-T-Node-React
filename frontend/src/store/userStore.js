@@ -11,11 +11,18 @@ export const useUserStore = create((set) => ({
   authToken: null,
   loading: false,
   error: null,
+  registerSuccess: null,
 
   setUser: (value) =>
     set((state) => ({
       ...state,
       user: value,
+    })),
+
+  setSuccess: (value) =>
+    set((state) => ({
+      ...state,
+      registerSuccess: value,
     })),
 
   setAuthToken: async () => {
@@ -108,9 +115,10 @@ export const useUserStore = create((set) => ({
         urlImage,
       });
       const { data } = response;
+      set({ registerSuccess: true });
       return { status: response.status, data };
     } catch (error) {
-      set({ error: error.message });
+      set({ error: error.message, registerSuccess: false });
     }
   },
 }));
